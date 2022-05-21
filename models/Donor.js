@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+const sequelize = require('../config/config');
 const bcrypt = require('bcrypt');
 
 class Donor extends Model {
@@ -38,14 +38,12 @@ class Donor extends Model {
           type: DataTypes.INTEGER,
           allowNull: true,
       },
-      badges: {
+      /*badges: {
           type: DataTypes.ARRAY,
-          allowNull: true,
-      }
-    },
-    {
+          allowNull: true,      May not need badge as a direct property of Donor. 
+                                Multiple badges can have multiple donors and donors can have multiple badges
+      } */
       hooks: {
-        // set up beforeCreate lifecycle "hook" functionality
         async beforeCreate(newDonorData) {
           newDonorData.password = await bcrypt.hash(newDonorData.password, 10);
           return newDonorData;
