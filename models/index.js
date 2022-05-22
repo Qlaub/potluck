@@ -1,7 +1,9 @@
-/* Uncomment when a model relationship can be added
+
 const Donor = require('./Donor');
 const Badge = require('./Badge');
 
+/*
+Uncomment when a model relationship can be added
 Donor.hasMany(Badge, {
     foreignKey: 'donor_id'
   });
@@ -11,4 +13,4 @@ Badge.belongsTo(Donor, {
   });
 */
 
-//module.exports = {};
+module.exports = {Donor, Badge};
