@@ -1,10 +1,11 @@
 const path = require('path');
 const express = require('express');
+require('dotenv').config();
 //const session = require('express-session'); (uncomment once cookies are necessary)
 //const exphbs = require('express-handlebars'); (uncomment once handlebars)
 //const helpers = require('./utils/helpers'); handlebars - utils/helper  (uncomment once handlebars)
 
-// credit card payment solution
+// credit card payment package
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 const app = express();
@@ -34,7 +35,7 @@ app.use(session(sess)); (uncomment once cookies are necessary)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-//app.use(express.static(path.join(__dirname, 'public'))); (uncomment once handlebars)
+app.use(express.static(path.join(__dirname, 'public'))); // (uncomment once handlebars)
 
 app.use(require('./controllers/'));
 
