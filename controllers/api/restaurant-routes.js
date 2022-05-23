@@ -84,7 +84,7 @@ router.post('/dishes', (req, res) => {
 });
 
 // Change restaurant balance
-// Expects an ID in req.params as well as amount integer in req.body 
+// Expects an ID in req.params as well as amount integer in req.body, example: { "amount": 20 }
 router.put('/:id', async (req, res) => {
   Restaurant.increment('balance', { 
     by: req.body.amount,
