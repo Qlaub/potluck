@@ -1,6 +1,6 @@
 
 const Customer = require('./Customer');
-//const Restaurant = require('./Restaurant');
+const Restaurant = require('./Restaurant');
 const Badge = require('./Badge');
 
 /*
@@ -14,4 +14,4 @@ Badge.belongsTo(Customer, {
   });
 */
 
-module.exports = {Customer, Badge};
+module.exports = {Customer, Restaurant, Badge};

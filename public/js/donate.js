@@ -1,3 +1,10 @@
-//let $donateInput = document.querySelector('');
+// dom elements will go here
+// $donateInput = document.querySelector('');
 
-let donateInput;
+// hardcoded until html and css are finished
+let donateSubmission = async event => {
+    //event.preventDefault() --if form
+
+    //$donateInput = $donateInput.value.trim();
+    
+}

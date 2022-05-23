@@ -3,6 +3,7 @@
 // hardcoded until html and css are finished
 // signup pathway for new users
 let signupOption = async event => {
+  //event.preventDefault() --if form
     const username = "Sonny";
     const email = "sonny@yesmail.com";
     const password = "sonny1";

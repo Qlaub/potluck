@@ -8,6 +8,9 @@ const app = express();
 const PORT = process.env.PORT || 3002;
 
 const sequelize = require('./config/config');
+
+//const customersSeed = require('./seeds/customer-seeds');
+const seedsSync = require('./seeds/index');
 //const SequelizeStore = require('connect-session-sequelize')(session.Store); (uncomment once cookies are necessary)
 
 /*
@@ -37,5 +40,5 @@ app.use(require('./controllers/'));
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}!`);
-  sequelize.sync({ force: false });
+  sequelize.sync({force: false})//.then(() => seedsSync())
 });
