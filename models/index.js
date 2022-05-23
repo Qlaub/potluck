@@ -1,6 +1,5 @@
 
 const Customer = require('./Customer');
-//const Restaurant = require('./Restaurant');
 const Badge = require('./Badge');
 const Dish = require('./Dish');
 const Restaurant = require('./Restaurant');
@@ -16,8 +15,12 @@ Badge.belongsTo(Customer, {
   });
 */
 
-// Dish.belongsTo(Restaurant, {
-//   foreignKey:
-// })
+Dish.belongsTo(Restaurant, {
+  foreignKey: 'restaurant_id'
+});
+
+Restaurant.hasMany(Dish, {
+  foreignKey: 'restaurant_id'
+});
 
 module.exports = {Customer, Badge, Dish, Restaurant};

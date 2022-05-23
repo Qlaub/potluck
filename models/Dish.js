@@ -7,9 +7,9 @@ Dish.init(
   {
     id: {
       type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true
     },
     price_in_cents: {
       type: DataTypes.INTEGER,
@@ -21,8 +21,10 @@ Dish.init(
     },
     restaurant_id: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       references: {
-        
+        model: 'restaurant',
+        key: 'id'
       }
     }
   },
