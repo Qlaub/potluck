@@ -18,7 +18,8 @@ router.post('/', (req, res) => {
     Customer.create({
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      balance: req.body.balance,
     })
     .then(dbCustomerData => {
       /*req.session.save(() => {
@@ -59,7 +60,7 @@ router.post('/', (req, res) => {
     });
   //});
   
-  // Supports uer logout
+  // Supports user logout
   router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
       req.session.destroy(() => { 
