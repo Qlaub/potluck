@@ -4,6 +4,9 @@ const express = require('express');
 //const exphbs = require('express-handlebars'); (uncomment once handlebars)
 //const helpers = require('./utils/helpers'); handlebars - utils/helper  (uncomment once handlebars)
 
+// credit card payment solution
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
+
 const app = express();
 const PORT = process.env.PORT || 3002;
 

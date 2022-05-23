@@ -1,6 +1,8 @@
 
 const Customer = require('./Customer');
 const Badge = require('./Badge');
+const Dish = require('./Dish');
+const Restaurant = require('./Restaurant');
 
 /*
 Uncomment when a model relationship can be added
@@ -13,4 +15,8 @@ Badge.belongsTo(Customer, {
   });
 */
 
-module.exports = {Customer, Badge};
+// Dish.belongsTo(Restaurant, {
+//   foreignKey:
+// })
+
+module.exports = {Customer, Badge, Dish, Restaurant};
