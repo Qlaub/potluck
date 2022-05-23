@@ -2,12 +2,12 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 const bcrypt = require('bcrypt');
 
-class Donor extends Model {
+class Customer extends Model {
    /* checkPassword(loginPassword) {
       return bcrypt.compareSync(loginPassword, this.password);
     } */
   }
-  Donor.init(
+  Customer.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -42,26 +42,26 @@ class Donor extends Model {
     {
     /*  badges: {
           type: DataTypes.ARRAY,
-          allowNull: true,      May not need badge as a direct property of Donor. 
-                                Multiple badges can have multiple donors and donors can have multiple badges
+          allowNull: true,      May not need badge as a direct property of Customer. 
+                                Multiple badges can have multiple customers and customers can have multiple badges
       }, */
       hooks: {
-        async beforeCreate(newDonorData) {
-          newDonorData.password = await bcrypt.hash(newDonorData.password, 10);
-          return newDonorData;
+        async beforeCreate(newCustomerData) {
+          newCustomerData.password = await bcrypt.hash(newCustomerData.password, 10);
+          return newCustomerData;
         },
   
-        async beforeUpdate(updatedDonorData) {
-          updatedDonorData.password = await bcrypt.hash(updatedDonorData.password, 10);
-          return updatedDonorData;
+        async beforeUpdate(updatedCustomerData) {
+          updatedCustomerData.password = await bcrypt.hash(updatedCustomerData.password, 10);
+          return updatedCustomerData;
         } 
       }, 
       sequelize,
       timestamps: false,
       freezeTableName: true,
       underscored: true,
-      modelName: 'donor',
+      modelName: 'customer',
     }
   );
   
-  module.exports = Donor;
+  module.exports = Customer;
