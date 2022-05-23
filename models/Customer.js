@@ -30,10 +30,6 @@ class Customer extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      balance: {
-          type: DataTypes.INTEGER,
-          allowNull: true,
-      },
       total_donated: {
         type: DataTypes.INTEGER,
         allowNull: true,
