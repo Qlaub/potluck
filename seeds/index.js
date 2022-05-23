@@ -1,4 +1,4 @@
-const sequqlize = require('../config/config');
+const sequelize = require('../config/config');
 const customersSeed = require('./customer-seeds');
 //const restaurantsSeed = require('./restaurant-seeds'); Uncomment once restaurant table is finished.
 
