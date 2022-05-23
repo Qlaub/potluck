@@ -1,16 +1,16 @@
 
-const Donor = require('./Donor');
+const Customer = require('./Customer');
 const Badge = require('./Badge');
 
 /*
 Uncomment when a model relationship can be added
-Donor.hasMany(Badge, {
-    foreignKey: 'donor_id'
+Customer.hasMany(Badge, {
+    foreignKey: 'customer_id'
   });
 
-Badge.belongsTo(Donor, {
-    foreignKey: 'donor_id'
+Badge.belongsTo(Customer, {
+    foreignKey: 'customer_id'
   });
 */
 
-module.exports = {Donor, Badge};
+module.exports = {Customer, Badge};

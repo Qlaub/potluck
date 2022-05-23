@@ -19,11 +19,11 @@ Badge.init(
         type: DataTypes.STRING,
         allowNull: false,
     },
-    donor_id: {
+    customer_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'donor',
+        model: 'customer',
         key: 'id'
       }
     },
