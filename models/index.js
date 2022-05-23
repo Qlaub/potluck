@@ -1,5 +1,6 @@
 
 const Customer = require('./Customer');
+//const Restaurant = require('./Restaurant');
 const Badge = require('./Badge');
 
 /*

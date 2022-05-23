@@ -1,6 +1,6 @@
-const sequqlize = require('../config/config');
+const sequelize = require('../config/config');
 const customersSeed = require('./customer-seeds');
-//const restaurantsSeed = require('./restaurant-seeds'); Uncomment once restaurant table is finished.
+const restaurantsSeed = require('./restaurant-seeds'); 
 
 const seedsSync = async () => {
     await sequelize.sync({force: true});
@@ -8,10 +8,12 @@ const seedsSync = async () => {
     await customersSeed();
     console.log('The Customer table seeding has been pre-populated!');
 
-    //await restaurantsSeed();
-    //console.log('The Restaurant table seeding has been pre-populated!');
+    /*
+    await restaurantsSeed();
+    console.log('The Restaurant table seeding has been pre-populated!'); */
 
-    process.exit(0);
+    
+    process.exit(0); 
 };
 
 seedsSync();
