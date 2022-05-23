@@ -37,6 +37,10 @@ class Customer extends Model {
       total_donated: {
         type: DataTypes.INTEGER,
         allowNull: true,
+      },
+      badges: {
+        type: DataTypes.ARRAY,
+        allowNull: true,
       }
     }, 
     {
