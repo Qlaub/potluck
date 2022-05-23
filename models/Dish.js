@@ -9,7 +9,6 @@ Dish.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
     },
     price_in_cents: {
       type: DataTypes.INTEGER,

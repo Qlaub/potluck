@@ -1,3 +1,4 @@
+// Expects ids as an array of integers
 function dishIds(ids) {
   let dishIds = [];
   ids.forEach(id => {
