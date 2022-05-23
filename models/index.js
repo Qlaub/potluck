@@ -3,7 +3,6 @@ const Customer = require('./Customer');
 const Restaurant = require('./Restaurant');
 const Badge = require('./Badge');
 const Dish = require('./Dish');
-const Restaurant = require('./Restaurant');
 
 /*
 Uncomment when a model relationship can be added
