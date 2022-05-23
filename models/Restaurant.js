@@ -15,7 +15,7 @@ class Restaurant extends Model {}
         type: DataTypes.STRING,
         allowNull: false
       },
-      restaurant_balance: {
+      balance: {
         type: DataTypes.INTEGER,
         allowNull: true
       },
