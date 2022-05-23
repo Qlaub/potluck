@@ -30,25 +30,12 @@ class Customer extends Model {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      balance: {
-          type: DataTypes.INTEGER,
-          allowNull: true,
-      },
       total_donated: {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
-      badges: {
-        type: DataTypes.ARRAY,
-        allowNull: true,
-      }
     }, 
     {
-    /*  badges: {
-          type: DataTypes.ARRAY,
-          allowNull: true,      May not need badge as a direct property of Customer. 
-                                Multiple badges can have multiple customers and customers can have multiple badges
-      }, */
       hooks: {
         async beforeCreate(newCustomerData) {
           newCustomerData.password = await bcrypt.hash(newCustomerData.password, 10);

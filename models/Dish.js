@@ -1,40 +1,39 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/config');
 
-class Badge extends Model {}
+class Dish extends Model {}
 
-Badge.init(
+Dish.init(
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-      autoIncrement: true
     },
-    badge_name: {
+    price_in_cents: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
-    badge_image: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    customer_id: {
+    restaurant_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
-        model: 'customer',
+        model: 'restaurant',
         key: 'id'
       }
-    },
+    }
   },
   {
     sequelize,
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'badge'
+    modelName: 'dish',
   }
 );
 
-module.exports = Badge;
+module.exports = Dish;

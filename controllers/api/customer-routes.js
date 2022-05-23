@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Customer } = require('../../models');
+const { Customer, Badge } = require('../../models');
 
 // Supports show-all-customers option if we're still implementing it
 router.get('/', (req, res) => {
@@ -71,6 +71,16 @@ router.post('/', (req, res) => {
       res.status(404).end();
     }
   });
+
+  //badges route that shows all customers with badges
+  // We can determine badge offered to customer depending on donation input, how much they have donated so far,
+  // and providing a badge for their achievement
+  router.get('/badges', (req, res) => {
+    Customer.findAll({include: Badge }).then(customers => {
+      customers = customers.filter(customer => customer.badges.length >= 1 );
+      res.json(customers);
+    })
+  })
   
   
 
