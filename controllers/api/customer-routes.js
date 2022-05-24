@@ -19,7 +19,6 @@ router.post('/', (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
-      balance: req.body.balance,
     })
     .then(dbCustomerData => {
       /*req.session.save(() => {
