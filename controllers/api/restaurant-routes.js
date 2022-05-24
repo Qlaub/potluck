@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
 
 // Find all menu items with matching ID values
 // expects request with json body as { ids: [1, 2, 3, 4, etc...] } - each integer being the id of a particular dish selected for checkout
-router.get('/dishes/', (req, res) => {
+router.put('/dishes/', (req, res) => {
   Dish.findAll({
     where: {
       [Op.or]: dishIds(req.body.ids) // function to take ids from req.body and split id values into array of objects
