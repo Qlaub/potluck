@@ -3,23 +3,40 @@
 <html lang="en">
 
 <head>
+    <title>PotLuck Menu</title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css" <title>Potluck</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/PotLuck-nobg.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
 </head>
 
-<body>
-    <nav>
-        <!--nav to donate/order/signout-->
-        <ul>
-            <li><a href="">Donate</a></li>
-            <li><a href="">Order</a></li>
-            <li><a href="">Chat</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Sign Out</a></li>
-        </ul>
+<body class="bg-teal-400">
+    <nav class="p-6 bg-white md:flex md:items-center md:justify-between">
+        <!--nav to main page, order, suggest a restaurant, chat??, guest view, and contact info-->
+        <div class="flex justify-between items center">
 
+            <span class="text-7xl cursor-pointer mx-2 md:hidden block">
+                <ion-icon name="menu" onclick="navMenu(this)"></ion-icon>
+            </span>
+
+            <span class="text-5xl font-bold [Open_Sans] text-teal-400">
+                <a href='#' class="text-5xl hover:text-teal-200 duration-200">PotLuck</a>
+                <img class ="h-32 inline p-2" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
+                <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100
+                opacity:0 top-[-400px] transition-all ease-in-duration-500">
+                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">Main Page</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">About</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">Suggest A Restaurant</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">Contact</a></li>
+                </ul>
+            </span>
+
+
+        </div>
     </nav>
 
     <header>
@@ -29,6 +46,14 @@
     <main>
 
     </main>
+    <script>
+        function navMenu(e){
+            const list = document.querySelector('ul');
+
+            e.name === 'menu' ? (e.name = "close" ,list.classList.add('top-[50px]') ,list.classList.add('opacity-100'))
+            :( e.name = "menu" ,list .classList.remove('top-[50px]') ,list.classList.remove('opacity-100'))
+        }
+    </script>
 </body>
 
 </html>
