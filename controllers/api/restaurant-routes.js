@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Dish, Restaurant } = require('../../models');
 const { Op } = require('sequelize');
-const dishIds = require('../../utils/routeHelper');
+const {dishIds} = require('../../utils/routeHelper');
 
 // Get all restaurants
 router.get('/', (req, res) => {
@@ -20,7 +20,7 @@ router.put('/dishes/', (req, res) => {
     where: {
       [Op.or]: dishIds(req.body.ids) // function to take ids from req.body and split id values into array of objects
     },
-    attributes: ['price_in_cents', 'name']
+    attributes: ['price_in_cents', 'name', 'restaurant_id'],
   })
     .then(dbDishData => {
       if (!dbDishData) {

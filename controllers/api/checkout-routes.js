@@ -1,5 +1,4 @@
 require('dotenv').config();
-// UPDATE process.env FILE WITH PUBLIC KEY FOR DEPLOYMENT
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 const router = require('express').Router();
 
@@ -20,10 +19,15 @@ router.post('/donate', async (req, res) => {
         },
         quantity: 1
       }],
+      metadata: {
+        "amount": JSON.stringify(req.body.amount),
+        "restaurantId": JSON.stringify(req.body.restaurantId)
+      },
       // UPDATE URL BELOW
-      success_url: `${process.env.SERVER_URL}/success.html`,
+      success_url: `${process.env.SERVER_URL}/order/donation-success?session_id={CHECKOUT_SESSION_ID}`,
       // UPDATE URL BELOW
-      cancel_url: `${process.env.SERVER_URL}/cancel.html`
+      cancel_url: `${process.env.SERVER_URL}/cancel.html`,
+      // metadata needed to pass value of test donations
     })
     res.json({ url: session.url })
   } catch (err) {
@@ -51,10 +55,19 @@ router.post('/', async (req, res) => {
           quantity: item.quantity
         }
       }),
+      metadata: {
+        "items": JSON.stringify(req.body.items.map(item => {
+          return {
+            amount: item.price_in_cents,
+            quantity: item.quantity,
+            restaurant_id: item.restaurant_id
+          }
+        }))
+      },
       // UPDATE URL BELOW
-      success_url: `${process.env.SERVER_URL}/success.html`,
+      success_url: `${process.env.SERVER_URL}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       // UPDATE URL BELOW
-      cancel_url: `${process.env.SERVER_URL}/cancel.html`
+      cancel_url: `${process.env.SERVER_URL}/cancel.html`,
     })
     // returns a url to a stripe checkout page
     res.json({ url: session.url })
