@@ -1,12 +1,19 @@
 // dom elements will go here
+const signUpUsernameEl = document.querySelector('#signUpUsername');
+const signUpEmailEl = document.querySelector('#signUpEmail');
+const signUpPasswordEl = document.querySelector('#signUpUsername');
+const loginEmailEl = document.querySelector('#loginUsername');
+const loginPasswordEl = document.querySelector('#loginPassword');
+const signUpBtnEl = document.querySelector('#signUpBtn');
+const loginBtnEl = document.querySelector('#loginBtn');
 
-// hardcoded until html and css are finished
+// Removed hardcoded values and added dom elements
 // signup pathway for new users
 let signupOption = async event => {
-  //event.preventDefault() --if form
-    const username = "Sonny";
-    const email = "sonny@yesmail.com";
-    const password = "sonny1";
+  event.preventDefault();
+    const username = signUpUsernameEl.value.trim();
+    const email = signUpEmailEl.value.trim();
+    const password = signUpPasswordEl.value.trim();
 
     console.log(username, email, password);
 
@@ -29,8 +36,9 @@ let signupOption = async event => {
   
   // login pathway for existing users
   let loginOption = async event => {
-    const email = "sonny@yesmail.com";
-    const password = "sonny1"
+    event.preventDefault();
+    const email = loginEmailEl.value.trim();
+    const password = loginPasswordEl.value.trim();
   
     if (email && password) {
       const response = await fetch('/api/customers/login', {
@@ -45,3 +53,7 @@ let signupOption = async event => {
       response.ok ? document.location.replace('/') : /* replace this path with the one that will be used after log-in */
       alert(response.statusText); }
     }
+
+loginBtnEl.addEventListener('click', loginOption);
+
+signUpBtnEl.addEventListener('click', signupOption);
