@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const {Restaurant, Dish} = require('../models/');
 
 // homepage
 router.get('/', (req, res) => {
@@ -12,11 +13,27 @@ router.get('/about', (req, res) => {
 
 // donate
 router.get('/donate', (req, res) => {
-  res.render('donate');
-});
+  Restaurant.findAll({
+    include: [
+      {
+        model: Dish,
+        attributes: ['id', 'price_in_cents', 'name']
+      }
+    ]
+  })
+    .then(dbRestaurantData => {
+      const restaurantData = dbRestaurantData.map(data => data.get({ plain: true }));
+      console.log((restaurantData))
+      res.render('donate', {restaurants: restaurantData})})
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+  });
 
 // order
 router.get('/order', (req, res) => {
+
   res.render('order');
 });
 

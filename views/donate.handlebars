@@ -6,11 +6,11 @@
     Please select the restaurant you would like to donate to and then enter the amount of your donation
     <br><br>
 
-    <form class="relative">
+    <form class="relative" class="text-center text-teal-900 font-bold [Helvetica] mx-6">
       <label for="restaurant">Choose a restaurant:</label>
         <select name="restaurant" id="restaurant" class="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-          {{#each}}
-          <option id="{{id}}">{{name}}</option>
+          {{#each restaurants as |restaurant|}}
+          <option id="{{restaurant.id}}">{{restaurant.name}}</option>
           {{/each}}
         </select>
         <br><br>
