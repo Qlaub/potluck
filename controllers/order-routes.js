@@ -10,11 +10,17 @@ router.get('/donation-success', async (req, res) => {
   // donationAmount divided by 100 because amount is converted from pennies to dollars
   const donationAmount = JSON.parse(session.metadata.amount) / 100;
   const restaurantId = JSON.parse(session.metadata.restaurantId);
+  const restaurantName = JSON.parse(session.metadata.name)
 
   updateRestaurantBalance(restaurantId, donationAmount);
 
+  const restaurant = {
+    name: restaurantName,
+    amount: donationAmount
+  }
+
   // RENDER BELOW WITH HANDLEBARS
-  res.send(`<html><body><h1>Thank you for your $${donationAmount} donation, ${customer.name}!</h1></body></html>`);
+  res.render('donationSuccess', restaurant);
 });
 
 router.get('/success', async (req, res) => {

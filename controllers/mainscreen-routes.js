@@ -23,7 +23,6 @@ router.get('/donate', (req, res) => {
   })
     .then(dbRestaurantData => {
       const restaurantData = dbRestaurantData.map(data => data.get({ plain: true }));
-      console.log((restaurantData))
       res.render('donate', {restaurants: restaurantData})})
     .catch(err => {
       console.log(err);

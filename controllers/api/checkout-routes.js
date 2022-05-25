@@ -21,12 +21,13 @@ router.post('/donate', async (req, res) => {
       }],
       metadata: {
         "amount": JSON.stringify(req.body.amount),
-        "restaurantId": JSON.stringify(req.body.restaurantId)
+        "restaurantId": JSON.stringify(req.body.restaurantId),
+        "name": JSON.stringify(req.body.name)
       },
       // UPDATE URL BELOW
       success_url: `${process.env.SERVER_URL}/order/donation-success?session_id={CHECKOUT_SESSION_ID}`,
       // UPDATE URL BELOW
-      cancel_url: `${process.env.SERVER_URL}/cancel.html`,
+      cancel_url: `${process.env.SERVER_URL}/donate`,
       // metadata needed to pass value of test donations
     })
     res.json({ url: session.url })
@@ -67,7 +68,7 @@ router.post('/', async (req, res) => {
       // UPDATE URL BELOW
       success_url: `${process.env.SERVER_URL}/order/success?session_id={CHECKOUT_SESSION_ID}`,
       // UPDATE URL BELOW
-      cancel_url: `${process.env.SERVER_URL}/cancel.html`,
+      cancel_url: `${process.env.SERVER_URL}/order`,
     })
     // returns a url to a stripe checkout page
     res.json({ url: session.url })

@@ -3,7 +3,7 @@ const donationFieldEl = document.querySelector('#donateInput');
 const restaurantSelectionEl = document.querySelector('#restaurant');
 
 // Amount argument expected as an integer in pennies
-async function donate(restaurantId, amount) {
+async function donate(restaurantId, amount, restaurantName) {
   // post request to credit card checkout
   const response = await fetch('/api/checkout/donate', {
     method: 'POST',
@@ -12,7 +12,8 @@ async function donate(restaurantId, amount) {
     },
     body: JSON.stringify({
       restaurantId: restaurantId,
-      amount: amount
+      amount: amount,
+      name: restaurantName
     })
   });
 
@@ -27,12 +28,10 @@ async function donate(restaurantId, amount) {
 
 buttonEl.addEventListener('click', (e) => {
   e.preventDefault();
-
+  
+  const restaurantName = restaurantSelectionEl.options[restaurantSelectionEl.selectedIndex].text;
   // NEED INPUT VALIDATION
   let amount = donationFieldEl.value * 100 // Stripe expects amount in pennies
-  console.log(restaurantSelectionEl.value)
-  donate(restaurantSelectionEl.value, amount);
-});
 
-// FOR TEST PURPOSES
-const testRestaurantId = 1;
+  donate(restaurantSelectionEl.value, amount, restaurantName);
+});
