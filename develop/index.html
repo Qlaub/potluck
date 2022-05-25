@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PotLuck: Order, Donate, and Share</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./images/PotLuck-nobg.png" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class="bg-teal-200">
+    <!--nav to footer/contact info-->
+    <nav class="p-6 bg-white md:flex md:items-center md:justify-between">
+        <!--nav to main page, order, suggest a restaurant, chat??, guest view, and contact info-->
+        <div class="flex justify-between items center">
+
+            <span class="text-7xl cursor-pointer mx-2 md:hidden block">
+                <ion-icon name="menu" onclick="navMenu(this)"></ion-icon>
+            </span>
+
+            <span class="text-5xl font-bold [Open_Sans] text-teal-400">
+                <a href='#' class="text-5xl hover:text-teal-200 duration-200">PotLuck</a>
+                <img class ="h-32 inline p-2" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
+                <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100
+                opacity:0 top-[-400px] transition-all ease-in-duration-500">
+                    <li class="mx-4 my-6 md:my-0"><a href="./index.html" class="text-xl hover:text-teal-200 duration-200">Main Page</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">About</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="./donateSearch.html" class="text-xl hover:text-teal-200 duration-200">Order</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">Contact</a></li>
+                </ul>
+            </span>
+
+
+        </div>
+    </nav>
+    <!--logo and app title-->
+    <div class="container mx-auto">
+
+    </div>
+    
+    <!--sign up and sign in-->
+    <main>
+        <!--sign up botton that deploys modal for user input-->
+        <div>
+            <p>Sign Up</p>
+            <!--sign up form-->
+            <form>
+                <!--username input field-->
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <!--email input field-->
+                <label for="user-email">E-mail:</label><br>
+                <input type="text" id="user-email" name="user-emaill"><br>
+                <!--passowrd input field-->
+                <label for="password">Password:</label><br>
+                <input type="text" id="password" name="password">
+            </form>
+            <button>Sign Up</button>
+        </div>
+
+        <!--sign in botton that deploys modal for user input-->
+        <div>
+            <p>Sign In</p>
+            <!--sign in form-->
+            <form>
+                <!--username input field-->
+                <label for="username">Username:</label><br>
+                <input type="text" id="username" name="username"><br>
+                <!--passowrd input field-->
+                <label for="password">Password:</label><br>
+                <input type="text" id="password" name="password">
+            </form>
+            <button>Sign In</button>
+        </div>
+
+
+    </main>
+
+    <!--contact info & link to top of app-->
+    <footer class="text-center" id="contact">
+        <h3>
+            Contact Us
+        </h3>
+        <p>
+            Team Member Info Will Go Here
+        </p>
+        <a class="text-teal-800 underline hover:text-teal-400 duration-200 static"href="#top">Back to top</a><br />
+
+    </footer>
+
+    <script>
+        function navMenu(e){
+            const list = document.querySelector('ul');
+
+            e.name === 'menu' ? (e.name = "close" ,list.classList.add('top-[50px]') ,list.classList.add('opacity-100'))
+            :( e.name = "menu" ,list .classList.remove('top-[50px]') ,list.classList.remove('opacity-100'))
+        }
+    </script>
+
+</body>
+
+</html>
