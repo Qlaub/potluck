@@ -1,5 +1,6 @@
-const button = document.querySelector('#donateBtn');
-const donationFieldEl = document.querySelector('#donateInput')
+const buttonEl = document.querySelector('#donateBtn');
+const donationFieldEl = document.querySelector('#donateInput');
+const restaurantSelectionEl = document.querySelector('#restaurant');
 
 // Amount argument expected as an integer in pennies
 async function donate(restaurantId, amount) {
@@ -24,12 +25,12 @@ async function donate(restaurantId, amount) {
   return true;
 };
 
-button.addEventListener('click', (e) => {
+buttonEl.addEventListener('click', (e) => {
   e.preventDefault();
 
   // NEED INPUT VALIDATION
   let amount = donationFieldEl.value * 100 // Stripe expects amount in pennies
-  donate(testRestaurantId, amount);
+  donate(restaurantSelectionEl.id, amount);
 });
 
 // FOR TEST PURPOSES
