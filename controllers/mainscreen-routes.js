@@ -1,5 +1,10 @@
 const router = require('express').Router();
 
+// homepage
+router.get('/', (req, res) => {
+  res.render('homepage');
+});
+
 //checks if a user is already logged in
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) { 
