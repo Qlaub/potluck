@@ -13,6 +13,7 @@ router.get('/donation-success', async (req, res) => {
 
   updateRestaurantBalance(restaurantId, donationAmount);
 
+  // RENDER BELOW WITH HANDLEBARS
   res.send(`<html><body><h1>Thank you for your $${donationAmount} donation, ${customer.name}!</h1></body></html>`);
 });
 
@@ -30,6 +31,7 @@ router.get('/success', async (req, res) => {
 
   const restaurantId = items[0].restaurant_id;
 
+  // PROBABLY NEED A RENDER BELOW TO WORK WITH HANDLEBARS
   res.send(`<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`);
 });
 

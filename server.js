@@ -13,7 +13,6 @@ const PORT = process.env.PORT || 3002;
 
 const sequelize = require('./config/config');
 
-const customersSeed = require('./seeds/customer-seeds');
 const seedsSync = require('./seeds/index');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
