@@ -50,9 +50,7 @@ let signupOption = async event => {
         headers: { 'Content-Type': 'application/json' }
       });
 
-      response.ok ? console.log('you logged in') : console.log('problem');
-
-      response.ok ? document.location.replace('/') : /* replace this path with the one that will be used after log-in */
+      response.ok ? document.location.replace('/about') : /* replace this path with the one that will be used after log-in */
       alert(response.statusText); }
     }
 
