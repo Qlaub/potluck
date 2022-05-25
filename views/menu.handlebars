@@ -1,3 +1,11 @@
 <div>
+  <h2>{{name}}'s Menu</h2>
+
+  <form>
+    {{#foreach dishes as |dish|}}
+    <label>{{dish.name}}: {{dish.price_in_cents}}</label>
+    <input type="text" id="{{dish.id}}">
+    {{/each}}
+  </form>
   
 </div>

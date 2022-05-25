@@ -5,7 +5,14 @@ const {dishIds} = require('../../utils/routeHelper');
 
 // Get all restaurants
 router.get('/', (req, res) => {
-  Restaurant.findAll()
+  Restaurant.findAll({
+    include: [
+      {
+        model: Dish,
+        attributes: ['id', 'price_in_cents', 'name']
+      }
+    ]
+  })
     .then(dbRestaurantData => res.json(dbRestaurantData))
     .catch(err => {
       console.log(err);
