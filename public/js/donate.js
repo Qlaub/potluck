@@ -30,7 +30,8 @@ buttonEl.addEventListener('click', (e) => {
 
   // NEED INPUT VALIDATION
   let amount = donationFieldEl.value * 100 // Stripe expects amount in pennies
-  donate(restaurantSelectionEl.id, amount);
+  console.log(restaurantSelectionEl.value)
+  donate(restaurantSelectionEl.value, amount);
 });
 
 // FOR TEST PURPOSES

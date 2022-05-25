@@ -1,4 +1,4 @@
-<div class="relative">
+<div class="relative mb-60">
   <h2 class="text-2xl text-center text-teal-800 font-bold [Helvetica] my-5 py-5 mx-6">
       Donate
   </h2>
@@ -6,14 +6,14 @@
     Please select the restaurant you would like to donate to and then enter the amount of your donation
     <br><br>
 
-    <form class="relative" class="text-center text-teal-900 font-bold [Helvetica] mx-6">
-      <label for="restaurant">Choose a restaurant:</label>
-        <select name="restaurant" id="restaurant" class="block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
+    <form class="relative text-center content-center text-teal-900 font-bold [Helvetica] mx-6">
+      <label for="restaurant" class="text-center text-teal-900 font-bold [Helvetica]">Choose a restaurant:</label>
+        <select name="restaurant" id="restaurant" class="mx-auto content-center text-center text-teal-900 [Helvetica] block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
           {{#each restaurants as |restaurant|}}
-          <option id="{{restaurant.id}}">{{restaurant.name}}</option>
+          <option value="{{restaurant.id}}" class="text-center text-teal-900 font-bold [Helvetica]">{{restaurant.name}}</option>
           {{/each}}
         </select>
-        <br><br>
+        <br>
       <label for="amount">Amount to donate:</label>
       <input type="text" id="donateInput">
       <br><br>
