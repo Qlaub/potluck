@@ -14,7 +14,6 @@
 </head>
 
 <body class="bg-teal-200">
-    <!--nav to footer/contact info-->
     <nav class="p-6 bg-white md:flex md:items-center md:justify-between">
         <!--nav to main page, order, suggest a restaurant, chat??, guest view, and contact info-->
         <div class="flex justify-between items center">
@@ -24,37 +23,55 @@
             </span>
 
             <span class="text-5xl font-bold [Open_Sans] text-teal-400">
-                <a href='#' class="text-5xl hover:text-teal-200 duration-200">PotLuck</a>
+                <a href='./index.html' class="text-5xl hover:text-teal-200 duration-200">PotLuck</a>
                 <img class ="h-32 inline p-2" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
                 <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100
                 opacity:0 top-[-400px] transition-all ease-in-duration-500">
-                    <li class="mx-4 my-6 md:my-0"><a href="./index.html" class="text-xl hover:text-teal-200 duration-200">Main Page</a></li>
-                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">About</a></li>
-                    <li class="mx-4 my-6 md:my-0"><a href="./donateSearch.html" class="text-xl hover:text-teal-200 duration-200">Order</a></li>
-                    <li class="mx-4 my-6 md:my-0"><a href="#" class="text-xl hover:text-teal-200 duration-200">Contact</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="./index.html" class="text-sm hover:text-teal-200 duration-200">Main Page</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="./citySearch.html" class=" text-sm hover:text-teal-200 duration-200">Order</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="./cart.html" class=" text-sm hover:text-teal-200 duration-200">Your Cart</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="#contact-us" class="text-sm hover:text-teal-200 duration-200">Contact</a></li>
                 </ul>
             </span>
 
 
         </div>
     </nav>
-    <!--logo and app title-->
-    <div class="container mx-auto">
-
-    </div>
     
-    <!--sign up and sign in-->
     <main>
       {{{ body }}}
     </main>
 
     <!--contact info & link to top of app-->
-    <footer class="text-center" id="contact">
-        <h3>
+    <footer class="text-center" id="contact-us">
+        <h3 class="text-teal-800 text-xl font-bold">
             Contact Us
         </h3>
         <p>
-            Team Member Info Will Go Here
+              <div class="contact py-6">
+                <ul>
+                  <li>
+                    <a class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="tel:123-567-918">Phone</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-500 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="https://github.com/" target="_blank">Github</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-400 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="https://gmail.com" target="_blank">Gmail</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-300 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="http://twitter.com" target="_blank">Twitter</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-200 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="http://facebook.com" target="_blank">Facebook</a>
+                  </li>
+                </ul>
+              </div>
         </p>
         <a class="text-teal-800 underline hover:text-teal-400 duration-200 static"href="#top">Back to top</a><br />
 

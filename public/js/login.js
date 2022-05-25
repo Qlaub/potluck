@@ -2,7 +2,7 @@
 const signUpUsernameEl = document.querySelector('#signUpUsername');
 const signUpEmailEl = document.querySelector('#signUpEmail');
 const signUpPasswordEl = document.querySelector('#signUpUsername');
-const loginEmailEl = document.querySelector('#loginUsername');
+const loginEmailEl = document.querySelector('#loginEmail');
 const loginPasswordEl = document.querySelector('#loginPassword');
 const signUpBtnEl = document.querySelector('#signUpBtn');
 const loginBtnEl = document.querySelector('#loginBtn');
@@ -49,6 +49,8 @@ let signupOption = async event => {
         }),
         headers: { 'Content-Type': 'application/json' }
       });
+
+      response.ok ? console.log('you logged in') : console.log('problem');
 
       response.ok ? document.location.replace('/') : /* replace this path with the one that will be used after log-in */
       alert(response.statusText); }

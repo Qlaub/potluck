@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 require('dotenv').config();
-//const session = require('express-session'); (uncomment once cookies are necessary)
+const session = require('express-session');
 const exphbs = require('express-handlebars');
 // const helpers = require('./utils/helpers'); // what is this used for?
 
@@ -13,13 +13,12 @@ const PORT = process.env.PORT || 3002;
 
 const sequelize = require('./config/config');
 
-//const customersSeed = require('./seeds/customer-seeds');
+const customersSeed = require('./seeds/customer-seeds');
 const seedsSync = require('./seeds/index');
-//const SequelizeStore = require('connect-session-sequelize')(session.Store); (uncomment once cookies are necessary)
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-/*
 const sess = {
-  secret: 'Super secret secret', (uncomment once cookies are necessary)
+  secret: 'Super secret secret',
   cookie: {},
   resave: false,
   saveUninitialized: true,
@@ -28,8 +27,7 @@ const sess = {
   })
 };
 
-app.use(session(sess)); (uncomment once cookies are necessary)
-*/
+app.use(session(sess));
 
 const hbs = exphbs.create({}); 
 
