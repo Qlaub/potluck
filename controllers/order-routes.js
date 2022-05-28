@@ -1,7 +1,7 @@
 require('dotenv').config();
 const router = require('express').Router();
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
-const {updateRestaurantBalance} = require('../utils/routeHelper');
+const {updateRestaurantBalance, updateCustomerDonationBalance} = require('../utils/routeHelper');
 
 router.get('/donation-success', async (req, res) => {
   // checks if user is logged in
@@ -20,6 +20,8 @@ router.get('/donation-success', async (req, res) => {
   const restaurantName = JSON.parse(session.metadata.name)
 
   updateRestaurantBalance(restaurantId, donationAmount);
+
+  updateCustomerDonationBalance(donationAmount, req.session.customer_id);
 
   const renderData = {
     restaurant: {

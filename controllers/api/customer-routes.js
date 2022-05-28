@@ -19,6 +19,7 @@ router.post('/', (req, res) => {
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
+      total_donated: 0
     })
     .then(dbCustomerData => {
       req.session.save(() => {
@@ -80,6 +81,23 @@ router.post('/', (req, res) => {
     })
   })
   
-  
+  router.put('/donation', async (req, res) => {
+    Customer.increment('total_donated', { 
+      by: req.body.amount,
+      where: {
+        id: req.body.customerId
+      }
+    })
+      .then(dbCustomerData => {
+        if (!dbCustomerData) {
+          res.status(404).json({ message: 'No Customer found with that ID '})
+        }
+        res.json(dbCustomerData)
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
 
 module.exports = router;

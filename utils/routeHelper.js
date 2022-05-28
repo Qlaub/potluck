@@ -26,4 +26,19 @@ async function updateRestaurantBalance(restaurantId, amount) {
   return;
 };
 
-module.exports = {dishIds, updateRestaurantBalance};
+async function updateCustomerDonationBalance(amount, customerId) {
+  console.log(amount);
+  const response = await fetch(`${process.env.SERVER_URL}/api/customers/donation`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({amount: amount, customerId: customerId})
+  });
+
+  response.ok ? await response.json() : console.log(response.statusText);
+
+  return;
+}
+
+module.exports = {dishIds, updateRestaurantBalance, updateCustomerDonationBalance};
