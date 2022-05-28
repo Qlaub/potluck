@@ -1,0 +1,52 @@
+{{#if message}}
+<div>{{message}}</div>
+{{/if}}
+
+<!--sign up botton that deploys modal for user input-->
+        <div class="static container mx-4 py-10">
+            <p class="text-2xl font-bold [Helvetica] text-teal-800 text-center">Sign Up</p>
+            <!--sign up form-->
+            <form class ="block bg-teal-100 mx-40 py-10">
+                <!--username input field-->
+                <span class="block text-sm font-medium text-slate-700">
+                <label for="signUpUsername">Username:</label><br>
+                <input type="text" id="signUpUsername" name="username" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
+                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Username Here"><br>
+                <!--email input field-->
+                <label for="user-email">Email:</label><br>
+                <input type="text" id="signUpEmail" name="user-emaill" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 
+                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com"><br>
+                <!--passowrd input field-->
+                <label for="signUpPassword">Password:</label><br>
+                <input type="text" id="password" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
+                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="********">
+                <input type="click" value="Sign Up" id="signUpBtn" class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+            </span>
+        </form>
+        
+            
+        </div>
+
+        <!--sign in botton that deploys modal for user input-->
+        <div class="static container mx-4 py-10">
+            <p class="text-2xl font-bold [Helvetica] text-teal-800 text-center">Sign In</p>
+            <!--sign in form-->
+            <form class="block bg-teal-100 mx-40 py-10">
+                <!--username input field-->
+                <span class="block text-sm font-medium text-slate-700">
+                <label for="email">Email:</label><br>
+                <input type="text" id="loginEmail" name="email" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
+                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Username Here"><br>
+                <!--passowrd input field-->
+                <label for="password">Password:</label><br>
+                <input type="text" id="loginPassword" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
+                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="********">
+                <input type="click" value="Sign In" id="loginBtn" class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
+            </span>
+        </form>
+            
+        </div>
+
+<script src="/js/login.js"></script>

@@ -4,6 +4,13 @@ const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const {updateRestaurantBalance} = require('../utils/routeHelper');
 
 router.get('/donation-success', async (req, res) => {
+  // checks if user is logged in
+  if (!req.session.loggedIn) {
+    // res.render used instead of redirect because it allows passing a custom message
+    res.render('login', {message: 'Please log in to donate!'});
+    return;
+  }
+
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
   const customer = await stripe.customers.retrieve(session.customer);
 
@@ -14,16 +21,26 @@ router.get('/donation-success', async (req, res) => {
 
   updateRestaurantBalance(restaurantId, donationAmount);
 
-  const restaurant = {
-    name: restaurantName,
-    amount: donationAmount
+  const renderData = {
+    restaurant: {
+      name: restaurantName,
+      amount: donationAmount
+    },
+    loggedIn: req.session.loggedIn
   }
 
   // RENDER BELOW WITH HANDLEBARS
-  res.render('donationSuccess', restaurant);
+  res.render('donationSuccess', renderData);
 });
 
 router.get('/success', async (req, res) => {
+  // checks if user is logged in
+  if (!req.session.loggedIn) {
+    // res.render used instead of redirect because it allows passing a custom message
+    res.render('login', {message: 'Please log in to order!'});
+    return;
+  }
+
   const session = await stripe.checkout.sessions.retrieve(req.query.session_id);
   const customer = await stripe.customers.retrieve(session.customer);
 
