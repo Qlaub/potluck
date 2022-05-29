@@ -1,6 +1,8 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 const router = require('express').Router();
+const { retrieveDishData, sanitizeValues, prepareData } = require('../../utils/routeHelper');
+const { validateCheckout } = require('../../utils/validate');
 
 // Donation route
 // Stripe expects req.body to include donation amount in pennies (lol) ex: { amount: 10000 } for $100 donation
@@ -37,14 +39,26 @@ router.post('/donate', async (req, res) => {
 });
 
 // Meal checkout route
-router.post('/', async (req, res) => {
+router.post('/:id', async (req, res) => {
+
+  // validate data
+  const dishData = await retrieveDishData(req.params.id);
+  const userValues = sanitizeValues(req.body.values);
+  const valid = validateCheckout(userValues, dishData, req.params.id);
+  if (!valid) {
+    res.status(400).json({ message: 'Data mismatch' })
+    return;
+  }
+
+  const data = prepareData(userValues, dishData);
+
   try {
     // start checkout process
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
       // checkout items expected as an array of objects
-      line_items: req.body.items.map(item => {
+      line_items: data.map(item => {
         return {
           price_data: {
             currency: 'usd',
@@ -53,14 +67,14 @@ router.post('/', async (req, res) => {
             },
             unit_amount: item.price_in_cents
           },
-          quantity: item.quantity
+          quantity: item.amount
         }
       }),
       metadata: {
-        "items": JSON.stringify(req.body.items.map(item => {
+        "items": JSON.stringify(data.map(item => {
           return {
             amount: item.price_in_cents,
-            quantity: item.quantity,
+            quantity: item.amount,
             restaurant_id: item.restaurant_id
           }
         }))

@@ -20,9 +20,28 @@ router.get('/', (req, res) => {
     });
 });
 
+// find all dishes from a restaurant
+router.get('/:id/dishes', (req, res) => {
+  Dish.findAll({
+    where: {
+      restaurant_id: req.params.id
+    }
+  })
+    .then(dbDishData => {
+      if (!dbDishData) {
+        res.status(404).json({ message: 'No restaurant with that id found' })
+        return;
+      }
+      res.json(dbDishData);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 // Find all menu items with matching ID values
 // expects request with json body as { ids: [1, 2, 3, 4, etc...] } - each integer being the id of a particular dish selected for checkout
-router.put('/dishes/', (req, res) => {
+router.put('/dishes', (req, res) => {
   Dish.findAll({
     where: {
       [Op.or]: dishIds(req.body.ids) // function to take ids from req.body and split id values into array of objects
@@ -34,10 +53,9 @@ router.put('/dishes/', (req, res) => {
         res.status(404).json({ message: 'No dish found with this id '});
         return;
       }
-      res.json(dbDishData)
+      res.json(dbDishData);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json(err);
     });
 });

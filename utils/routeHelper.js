@@ -21,13 +21,12 @@ async function updateRestaurantBalance(restaurantId, amount) {
     body: JSON.stringify({amount: amount})
   });
 
-  response.ok ? await response.json() : alert(response.statusText);
+  response.ok ? await response.json() : console.log(response.statusText);
 
   return;
 };
 
-async function updateCustomerDonationBalance(amount, customerId) {
-  console.log(amount);
+async function updateCustomerDonationBalance(customerId, amount) {
   const response = await fetch(`${process.env.SERVER_URL}/api/customers/donation`, {
     method: 'PUT',
     headers: {
@@ -41,4 +40,49 @@ async function updateCustomerDonationBalance(amount, customerId) {
   return;
 }
 
-module.exports = {dishIds, updateRestaurantBalance, updateCustomerDonationBalance};
+async function retrieveDishData(restaurantId) {
+  const response = await fetch(`${process.env.SERVER_URL}/api/restaurants/${restaurantId}/dishes`, {
+    method: 'GET',
+  });
+
+  let dishes;
+  response.ok ? dishes = await response.json() : console.log(response.statusText);
+  
+  return dishes;
+}
+
+function sanitizeValues(values) {
+  let newValues = [];
+
+  values.forEach(value => {
+    if (value < 11 && value > 0) {
+      newValues.push(value)
+    } else {
+      newValues.push(0)
+    }
+  });
+
+  return newValues;
+}
+
+function prepareData(userValues, dishData) {
+  let preparedData = [];
+
+  userValues.forEach((value, index) => {
+    if (value) {
+      dishData[index].amount = value;
+      preparedData.push(dishData[index]);
+    }
+  });
+  
+  return preparedData;
+}
+
+module.exports = {
+  dishIds, 
+  updateRestaurantBalance, 
+  updateCustomerDonationBalance, 
+  retrieveDishData,
+  sanitizeValues,
+  prepareData
+};

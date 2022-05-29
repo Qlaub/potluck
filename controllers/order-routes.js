@@ -21,7 +21,7 @@ router.get('/donation-success', async (req, res) => {
 
   updateRestaurantBalance(restaurantId, donationAmount);
 
-  updateCustomerDonationBalance(donationAmount, req.session.customer_id);
+  updateCustomerDonationBalance(req.session.customer_id, donationAmount);
 
   const renderData = {
     restaurant: {
