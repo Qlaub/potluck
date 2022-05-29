@@ -50,6 +50,12 @@ router.get('/order', (req, res) => {
   res.render('order', {loggedIn: req.session.loggedIn});
 });
 
+
+router.get('/menu', (req, res) => {
+
+  res.render('menu');
+}); 
+
 //checks if a user is already logged in
 router.get('/signup', (req, res) => {
     if (req.session.loggedIn) { 

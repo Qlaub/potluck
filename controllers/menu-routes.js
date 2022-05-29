@@ -1,11 +1,9 @@
 let router = require('express').Router();
 const { Dish, Restaurant } = require('../models');
 
-
-
-router.post('/', (req, res) => {
+router.get('/:id', (req, res) => {
         Restaurant.findOne({
-          where: req.body.id,
+          where: Number(req.params.id),
           include: [
             {
               model: Dish,
@@ -14,13 +12,13 @@ router.post('/', (req, res) => {
           ]
         })
           .then(dbRestaurantData => {
-            const restaurantData = dbRestaurantData.get({ plain: true });
+            let restaurantData = dbRestaurantData.get({ plain: true });
             console.log((restaurantData))
-            res.render('menu')})
+            res.render('menu', {restaurantData})})
           .catch(err => {
             console.log(err);
             res.status(500).json(err);
-          })}
+          })} 
           );
 
 module.exports = router;
