@@ -3,7 +3,7 @@ const express = require('express');
 require('dotenv').config();
 const session = require('express-session');
 const exphbs = require('express-handlebars');
-// const helpers = require('./utils/helpers'); // what is this used for?
+const helpers = require('./utils/helpers'); // what is this used for?
 
 // credit card payment package
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
@@ -28,13 +28,13 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({}); 
+const hbs = exphbs.create({helpers}); 
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('./controllers/'));
