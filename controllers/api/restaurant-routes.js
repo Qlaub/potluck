@@ -21,7 +21,7 @@ router.get('/', (req, res) => {
 });
 
 // find all dishes from a restaurant
-router.get('/:id/dishes', (req, res) => {
+router.get('/dishes/:id', (req, res) => {
   Dish.findAll({
     where: {
       restaurant_id: req.params.id
@@ -33,6 +33,28 @@ router.get('/:id/dishes', (req, res) => {
         return;
       }
       res.json(dbDishData);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// find current available discount balance from a restaurant
+router.get('/balance/:id', (req, res) => {
+  Restaurant.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'balance'
+    ]
+  })
+    .then(dbRestaurantData => {
+      if (!dbRestaurantData) {
+        res.status(404).json({ message: 'No restaurant with that id found' })
+        return;
+      }
+      res.json(dbRestaurantData);
     })
     .catch(err => {
       res.status(500).json(err);

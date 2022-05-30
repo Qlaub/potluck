@@ -38,10 +38,10 @@ async function updateCustomerDonationBalance(customerId, amount) {
   response.ok ? await response.json() : console.log(response.statusText);
 
   return;
-}
+};
 
 async function retrieveDishData(restaurantId) {
-  const response = await fetch(`${process.env.SERVER_URL}/api/restaurants/${restaurantId}/dishes`, {
+  const response = await fetch(`${process.env.SERVER_URL}/api/restaurants/dishes/${restaurantId}`, {
     method: 'GET',
   });
 
@@ -49,7 +49,7 @@ async function retrieveDishData(restaurantId) {
   response.ok ? dishes = await response.json() : console.log(response.statusText);
   
   return dishes;
-}
+};
 
 function sanitizeValues(values) {
   let newValues = [];
@@ -63,7 +63,7 @@ function sanitizeValues(values) {
   });
 
   return newValues;
-}
+};
 
 function prepareData(userValues, dishData) {
   let preparedData = [];
@@ -76,7 +76,18 @@ function prepareData(userValues, dishData) {
   });
   
   return preparedData;
-}
+};
+
+async function retrieveRestaurantBalance(restaurantId) {
+  const response = await fetch(`${process.env.SERVER_URL}/api/restaurants/balance/${restaurantId}`, {
+    method: 'GET',
+  });
+
+  let balance;
+  response.ok ? balance = await response.json() : console.log(response.statusText);
+  
+  return balance.balance;
+};
 
 module.exports = {
   dishIds, 
@@ -84,5 +95,6 @@ module.exports = {
   updateCustomerDonationBalance, 
   retrieveDishData,
   sanitizeValues,
-  prepareData
+  prepareData,
+  retrieveRestaurantBalance
 };

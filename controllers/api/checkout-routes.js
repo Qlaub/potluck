@@ -1,7 +1,7 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 const router = require('express').Router();
-const { retrieveDishData, sanitizeValues, prepareData } = require('../../utils/routeHelper');
+const { retrieveDishData, sanitizeValues, prepareData, retrieveRestaurantBalance } = require('../../utils/routeHelper');
 const { validateCheckout } = require('../../utils/validate');
 
 // Donation route
@@ -48,7 +48,9 @@ router.post('/:id', async (req, res) => {
   if (!valid) {
     res.status(400).json({ message: 'Data mismatch' })
     return;
-  }
+  };
+
+  const restaurantBalance = retrieveRestaurantBalance(req.params.id);
 
   const data = prepareData(userValues, dishData);
 

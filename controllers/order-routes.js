@@ -57,7 +57,7 @@ router.get('/success', async (req, res) => {
   const restaurantId = items[0].restaurant_id;
 
   // PROBABLY NEED A RENDER BELOW TO WORK WITH HANDLEBARS
-  res.send(`<html><body><h1>Thanks for your order, ${customer.name}!</h1></body></html>`);
+  res.send(`<html><body><h1>Thanks for your $${purchaseAmount} order, ${customer.name}!</h1></body></html>`);
 });
 
 module.exports = router;
