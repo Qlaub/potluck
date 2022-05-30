@@ -25,7 +25,13 @@ router.get('/dishes/:id', (req, res) => {
   Dish.findAll({
     where: {
       restaurant_id: req.params.id
-    }
+    },
+    include: [
+      {
+        model: Restaurant,
+        attributes: ['name']
+      }
+    ]
   })
     .then(dbDishData => {
       if (!dbDishData) {

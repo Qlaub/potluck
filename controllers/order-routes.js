@@ -3,6 +3,7 @@ const router = require('express').Router();
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const {updateRestaurantBalance, updateCustomerDonationBalance} = require('../utils/routeHelper');
 
+// completed donation
 router.get('/donation-success', async (req, res) => {
   // checks if user is logged in
   if (!req.session.loggedIn) {
@@ -28,13 +29,16 @@ router.get('/donation-success', async (req, res) => {
       name: restaurantName,
       amount: donationAmount
     },
+    donation: true,
     loggedIn: req.session.loggedIn
   }
 
   // RENDER BELOW WITH HANDLEBARS
-  res.render('donationSuccess', renderData);
+  res.render('success', renderData);
 });
 
+
+// completed purchase
 router.get('/success', async (req, res) => {
   // checks if user is logged in
   if (!req.session.loggedIn) {
@@ -56,8 +60,23 @@ router.get('/success', async (req, res) => {
 
   const restaurantId = items[0].restaurant_id;
 
+  const renderData = {
+    restaurant: {
+      name: items[0].restaurant_name,
+      amount: purchaseAmount
+    },
+    order: true,
+    loggedIn: req.session.loggedIn
+  }
+
+  if (session.total_details.amount_discount) {
+    const amount = -Math.abs(session.total_details.amount_discount/100);
+    updateRestaurantBalance(restaurantId, amount);
+    renderData.discount = session.total_details.amount_discount/100;
+  }
+
   // PROBABLY NEED A RENDER BELOW TO WORK WITH HANDLEBARS
-  res.send(`<html><body><h1>Thanks for your $${purchaseAmount} order, ${customer.name}!</h1></body></html>`);
+  res.render(`success`, renderData);
 });
 
 module.exports = router;

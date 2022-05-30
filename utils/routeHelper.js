@@ -1,5 +1,6 @@
 // node-fetch is an ESM-only module
 const fetch = require('node-fetch');
+require('dotenv').config();
 
 // Expects ids as an array of integers
 // Returns array of objects, each has an id key associated with a dish

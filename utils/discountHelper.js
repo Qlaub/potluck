@@ -1,89 +1,57 @@
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
-// decide what discount will be applied FIRST, use switch
-// then make call to stripe to get correct promo code
-
 // expects restaurantBalance and purchasePrice as integers
-function calculateDiscount(restaurantBalance, purchasePrice) {
-  let id;
-  // purchase under $20, 100% discount
-  if (restaurantBalance >= purchasePrice && purchasePrice <= 20) {
-    id = 'mxamiKmu'
+async function getCoupon(restaurantBalance, purchasePrice) {
+  let coupon;
+  // purchases of $20 and under, 100% discount
+  if (purchasePrice <= 20 && restaurantBalance >= purchasePrice) {
+    coupon = await stripe.coupons.create({
+      percent_off: 100.00,
+      duration: 'once',
+    });
+  } // purchases of over $20, $20 discount
+  else if (purchasePrice > 20 && restaurantBalance >= 20) {
+    coupon = await stripe.coupons.create({
+      amount_off: 2000,
+      duration: 'once',
+      currency: 'usd'
+    });
+  } // purchases of $20 and over, under $20 discount
+  else if (purchasePrice >= 20 && restaurantBalance < 20) {
+    coupon = await stripe.coupons.create({
+      // convert restaurantBalance to pennies
+      amount_off: restaurantBalance * 100,
+      duration: 'once',
+      currency: 'usd'
+    });
+  } // purchases under $20, under $20 discount
+  else {
+    coupon = await stripe.coupons.create({
+      amount_off: restaurantBalance * 100,
+      duration: 'once',
+      currency: 'usd'
+    });
   }
 
-  // purchases over $20, $20 discount
-  if (restaurantBalance >= 20 && purchasePrice > 20) {
-    id = 'peNTYaG0'
-  }
-
-  // purchases over $20, under $20 discount
-  if (restaurantBalance < 20) {
-    switch (Math.floor(restaurantBalance)) {
-      case 19:
-        id = 'bgTN721B'
-        break;
-      case 18:
-        id = 'Mheg9pp'
-        break;
-      case 17:
-        id = 'c5Z8Fr42'
-        break;
-      case 16:
-        id = '26pDl3an'
-        break;
-      case 15:
-        id = 'ehMGikIr'
-        break;
-      case 14:
-        id = 'XdPmkVE7'
-        break;
-      case 13:
-        id = 'o7YWdTGM'
-        break;
-      case 12:
-        id = '29qA1EB4'
-        break;
-      case 11:
-        id = 'WQYTpc6X'
-        break;
-      case 10:
-        id = 'rvWRkH3X'
-        break;
-      case 9:
-        id = 'xMPGUjkP'
-        break;
-      case 8:
-        id = 'RPCMOBCx'
-        break;
-      case 7:
-        id = 'K3i1aR3i'
-        break;
-      case 6:
-        id = 'gcgR8Qfi'
-        break;
-      case 5:
-        id = 'vMFGBg3m'
-        break;
-      case 4:
-        id = 'CehRc81c'
-        break;
-      case 3:
-        id = 'h1JXnbHF'
-        break;
-      case 2:
-        id = '1iRPII7O'
-        break;
-      case 1:
-        id = 'L98Magl1'
-    }
-  }
-
-  return id;
+  return coupon;
 }
 
-async function getPromotionCode(id) {
-  const promotionCode = await stripe.promotionCodes.retrieve(id);
+// returns a coupon object if applicable, returns undefined if no coupon is applicable
+ async function checkForCoupon (restaurantBalance, data) {
+  if (restaurantBalance) {
+    //purchaseTotal will be in dollars
+    let purchaseTotal = 0;
+    data.forEach(dish => {
+      purchaseTotal += dish.price_in_cents / 100 * dish.amount
+    });
 
+    const coupon = await getCoupon(restaurantBalance, purchaseTotal);
 
+    return coupon;
+  }
+}
+
+module.exports = {
+  checkForCoupon
 };
