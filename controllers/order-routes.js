@@ -29,8 +29,8 @@ router.get('/donation-success', async (req, res) => {
       name: restaurantName,
       amount: donationAmount
     },
-    donation: true,
-    loggedIn: req.session.loggedIn
+    checkout: 'donation',
+    session: req.session
   }
 
   // RENDER BELOW WITH HANDLEBARS
@@ -65,8 +65,8 @@ router.get('/success', async (req, res) => {
       name: items[0].restaurant_name,
       amount: purchaseAmount
     },
-    order: true,
-    loggedIn: req.session.loggedIn
+    checkout: 'order',
+    session: req.session
   }
 
   if (session.total_details.amount_discount) {

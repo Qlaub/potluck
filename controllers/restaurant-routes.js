@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     .then(dbRestaurantData => {
       const restaurants = dbRestaurantData.map(restaurant => restaurant.get({plain: true}));
       res.render('restaurants', {restaurants,
-      loggedIn: req.session.loggedIn});
+      session: req.session});
     })
     .catch(err => { 
       console.log(err);

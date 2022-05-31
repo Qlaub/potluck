@@ -10,7 +10,7 @@ router.get('/:id', (req, res) => {
         let result = dbRestaurantData.get({plain: true});
         result ??= new Error('Something went wrong in the orderSearch GET /:id request');
         res.render('orderSearch', {result,
-        loggedIn: req.session.loggedIn});
+        session: req.session});
       })
       .catch(err => {
         console.log(err);

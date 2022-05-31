@@ -13,7 +13,7 @@ router.get('/:id', (req, res) => {
   })
     .then(dbRestaurantData => {
       let restaurantData = dbRestaurantData.get({ plain: true });
-      res.render('menu', {restaurantData})})
+      res.render('menu', {restaurantData: restaurantData, session: req.session})})
     .catch(err => {
       console.log(err);
       res.status(500).json(err);

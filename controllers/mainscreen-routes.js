@@ -3,12 +3,12 @@ const {Restaurant, Dish} = require('../models/');
 
 // homepage
 router.get('/', (req, res) => {
-  res.render('homepage', {loggedIn: req.session.loggedIn});
+  res.render('homepage', {session: req.session});
 });
 
 // about
 router.get('/about', (req, res) => {
-  res.render('about', {loggedIn: req.session.loggedIn});
+  res.render('about', {session: req.session});
 });
 
 // donate
@@ -31,7 +31,7 @@ router.get('/donate', (req, res) => {
     .then(dbRestaurantData => {
       const restaurantData = dbRestaurantData.map(data => data.get({ plain: true }));
 
-      res.render('donate', {restaurants: restaurantData, loggedIn: req.session.loggedIn})})
+      res.render('donate', {restaurants: restaurantData, session: req.session})})
     .catch(err => {
       console.log(err);
       res.status(500).json(err);
@@ -47,13 +47,13 @@ router.get('/order', (req, res) => {
     return;
   }
 
-  res.render('order', {loggedIn: req.session.loggedIn});
+  res.render('order', {session: req.session});
 });
 
 
 router.get('/menu', (req, res) => {
 
-  res.render('menu');
+  res.render('menu', {session: req.session});
 }); 
 
 //checks if a user is already logged in
@@ -62,7 +62,7 @@ router.get('/signup', (req, res) => {
       res.redirect('/');
       return;
     }
-    res.render('signup', {loggedIn: req.session.loggedIn});
+    res.render('signup', {session: req.session});
 });
 
 //checks if a user is already logged in
@@ -71,7 +71,7 @@ router.get('/login', (req, res) => {
       res.redirect('/');
       return;
     }
-    res.render('login', {loggedIn: req.session.loggedIn});
+    res.render('login', {session: req.session});
 });
 
 module.exports = router;
