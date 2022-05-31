@@ -19,13 +19,14 @@
         <!--nav to main page, order, suggest a restaurant, chat??, guest view, and contact info-->
         <div class="flex justify-between items center">
 
-            <span class="text-7xl cursor-pointer mx-2 md:hidden block">
+            <span class="text-5xl cursor-pointer mx-2 md:hidden block">
                 <ion-icon name="menu" onclick="navMenu(this)"></ion-icon>
             </span>
 
             <span class="text-5xl font-bold [Open_Sans] text-teal-400">
-                <a href='./index.html' class="text-5xl hover:text-teal-200 duration-200">PotLuck</a>
-                <img class ="h-32 inline p-2" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
+                <a href='./index.html' class="text-5xl relative hover:text-teal-200 duration-200">PotLuck</a>
+                <img class ="absolute top-0 right-0 h-32 w-50 md:opacity-100 opacity-0" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
+                <!--<img class="absolute top-0 left-50 h-32 w-50 md:opacity-0 opacity-100" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Small Screen">-->
                 <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100
                 opacity:0 top-[-400px] transition-all ease-in-duration-500">
                     <li class="mx-4 my-6 md:my-0"><a href="./index.html" class="text-sm hover:text-teal-200 duration-200">Main Page</a></li>
@@ -40,10 +41,10 @@
     </nav>
 
     <div class="relative">
-        <h2 class="text-2xl text-center text-teal-800 font-bold [Helvetica] my-5 py-5 mx-6">
+        <h2 class="text-2xl text-center text-teal-800 font-bold [Helvetica] my-5 py-3 mx-6">
             About
         </h2>
-        <p class="text-center text-teal-900 font-bold [Helvetica] mx-6">
+        <p class="text-center text-teal-900 font-bold [Helvetica] mx-6 py-5">
             PotLuck is a food-service app created by four <br>
             junior programmers to add a new take on the online <br>
             food ordering industry. PotLuck is unique in that <br>
@@ -83,7 +84,7 @@
     <main>
         <!--sign up botton that deploys modal for user input-->
         <div class="static container mx-4 py-10">
-            <p class="text-2xl font-bold [Helvetica] text-teal-800 text-center">Sign Up</p>
+            <p class="text-2xl bg-teal-100 mx-40 py-10 font-bold [Helvetica] text-teal-800 text-center">Sign Up</p>
             <!--sign up form-->
             <form class ="block bg-teal-100 mx-40 py-10">
                 <!--username input field-->
@@ -103,13 +104,14 @@
             rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
             </span>
         </form>
-        
-            
+        <a href="./citySearch.html">
+            <button class="button bg-teal-600 py-4 absolute top-50 right-10 inline-block px-6 py-2.5 text-white font-medium text-xl leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Sign Up</button>
         </div>
-
+        </a>
         <!--sign in botton that deploys modal for user input-->
         <div class="static container mx-4 py-10">
-            <p class="text-2xl font-bold [Helvetica] text-teal-800 text-center">Sign In</p>
+            <p class="text-2xl font-bold [Helvetica] bg-teal-100 mx-40 py-10 text-teal-800 text-center">Sign In</p>
             <!--sign in form-->
             <form class="block bg-teal-100 mx-40 py-10">
                 <!--username input field-->
@@ -125,9 +127,11 @@
             rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
             </span>
         </form>
-            
+        <a href="./citySearch.html">
+            <button class="button bg-teal-600 py-4 absolute top-50 right-10 inline-block px-6 py-2.5 text-white font-medium text-xl leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Sign In</button>
         </div>
-
+        </a>
 
     </main>
 
