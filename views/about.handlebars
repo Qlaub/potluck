@@ -1,29 +1,32 @@
-<div class="relative">
-        <h2 class="text-2xl text-center text-teal-800 font-bold [Helvetica] my-5 py-5 mx-6">
-            About
-        </h2>
-        <p class="text-center text-teal-900 font-bold [Helvetica] mx-6">
-            PotLuck is a food-service app created by four <br>
-            junior programmers to add a new take on the online <br>
-            food ordering industry. PotLuck is unique in that <br>
-            it's users can donate any amount of money to add to <br>
-            the PotLuck's pool. Then PotLuck will use that donated <br>
-            money to pay for another users meal. The idea came from <br>
-            the pay-it-forwards that typically happen when a generous <br>
-            individual will pay for the cars order behind them in a <br>
-            drive-thru. Join PotLuck today and help the hungry in local <br>
-            area today!
+<section class="grid place-items-center">
+  <div class="lg:mx-56 xl:mx-96 bg-white rounded-3xl">
+    <h2 class="text-5xl text-teal-800 font-bold my-5 py-5 mx-4 md:mx-6">
+      What is PotLuck?
+    </h2>
+    <p class="text-teal-900 text-lg mx-4 md:mx-6 mb-10 pb-10 border-b border-teal-400">
+        PotLuck is a food-service app created by four
+        junior programmers to add a new take on the online
+        food ordering industry. PotLuck is unique in that
+        it's users can donate any amount of money to add to
+        the PotLuck's pool. Then PotLuck will use that donated
+        money to pay for another users meal. The idea came from
+        the pay-it-forwards that typically happen when a generous
+        individual will pay for the cars order behind them in a
+        drive-thru. Join PotLuck today and help the hungry in local
+        area today!
+    </p>
+    <p class="text-teal-900 text-center font-bold text-lg md:mx-6 mb-6">
+      Get started by using the buttons below to donate or place an order!
+    </p>
 
-            <br><br>
-            Use the buttons below or in the navigation bar to donate to a restaurant or order food!
-            <br><br>
-            <button onclick="window.location.href='/donate';" id="donateBtn" class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
-            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Donate</button>
-            <button onclick="window.location.href='/order';" id="orderBtn" class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
-            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Order</button>
-        </p>
-    </div>
+    <div class="flex justify-center gap-1 md:gap-4 mb-6 pb-4">
+      <button onclick="window.location.href='/donate';" id="donateBtn" class="button col-span-1 mx-8 w-full md:w-52 bg-teal-600 py-6 text-center inline-block px-6 py-2.5 text-white font-medium text-md leading-tight uppercase
+          rounded-xl shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Donate</button>
+      <button onclick="window.location.href='/order';" id="orderBtn" class="button col-span-1 mx-8 w-full md:w-52 bg-teal-600 py-6 text-center inline-block px-6 py-2.5 text-white font-medium text-md leading-tight uppercase
+          rounded-xl shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Order</button>
+    </div>    
+  </div>
+</section>
 
-    <br><br><br><br><br>
 
     {{!-- <script src="/js/about.js"></script> --}}
