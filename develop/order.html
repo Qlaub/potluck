@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PotLuck City Search</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="./images/PotLuck-nobg.png" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</head>
+
+<body class="bg-teal-400">
+    <nav class="p-6 bg-white md:flex md:items-center md:justify-between">
+        <!--nav to main page, order, suggest a restaurant, chat??, guest view, and contact info-->
+        <div class="flex justify-between items center">
+
+            <span class="text-7xl cursor-pointer mx-2 md:hidden block">
+                <ion-icon name="menu" onclick="navMenu(this)"></ion-icon>
+            </span>
+
+            <span class="text-5xl font-bold [Open_Sans] text-teal-400">
+                <a href='./index.html' class="text-5xl hover:text-teal-200 duration-200">PotLuck</a>
+                <img class ="absolute top-0 right-0 h-32 w-50 px-16" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
+                <ul class="md:flex md:items-center z-[-1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 py-4 md:pl-0 pl-7 md:opacity-100
+                opacity:0 top-[-400px] transition-all ease-in-duration-500">
+                    <li class="mx-4 my-6 md:my-0"><a href="./index.html" class="text-sm hover:text-teal-200 duration-200">Main Page</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="./citySearch.html" class=" text-sm hover:text-teal-200 duration-200">Order</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="./cart.html" class=" text-sm hover:text-teal-200 duration-200">Your Cart</a></li>
+                    <li class="mx-4 my-6 md:my-0"><a href="#contact-us" class="text-sm hover:text-teal-200 duration-200">Contact</a></li>
+                </ul>
+            </span>
+
+            <span>
+                <img class="absolute top-0 right-0 h-16 w-16" src="./images/profile-icon-9.png" alt="Placeholder Profile Picture">
+            </span>
+
+
+        </div>
+    </nav>
+
+    <header>
+        <h3 class="text-teal-800 mx-40 py-10 font-bold [Helvetic] text-xl">
+        </h3>
+    </header>
+
+    <main class="lg:px-10 px-4">
+      <section>
+        <!--ALL RESTAURANTS CONTAINER-->
+        <div class="grid 2xl:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6">
+          <!--CHILI'S CONTAINER-->
+          <div class="grid lg:col-span-1 grid-cols-2 gap-4 bg-white rounded-lg cursor-pointer hover:bg-white/90">
+            <!--Clickable background img-->
+            <div class="lg:p-3 p-2 min-h-175 min-w-275 max-h-176 max-w-276">
+              <img src="../public/images/chilis.jpg" alt="Chili's" class="w-full h-full object-cover rounded-lg">
+            </div>
+            <!--NAME, ADDRESS, CONTACT-->
+            <div class="grid col-span-1 content-center lg:ml-4 text-teal-800 lg:p-3">
+              <a href="/menu/1"><p class="font-bold text-2xl">Chili's</p></a>
+              <p>4600 Chapel Hill Blvd.</p>
+              <p>Durham, NC 27707</p>
+              <p>(919) 489-6699</p>
+            </div>
+          </div>
+          <!--RED LOBSTER CONTAINER-->
+          <div class="grid lg:col-span-1 grid-cols-2 gap-4 bg-white rounded-lg">
+            <!--Clickable background img-->
+            <div class="p-2">
+              <a href="/menu/1" class="grid lg:col-span-1 sm:col-span-1"><img src="../public/images/red_lobster.png" alt="Red Lobster" class="rounded-lg"></a>
+            </div>
+            <!--NAME, ADDRESS, CONTACT-->
+            <div class="grid lg:col-span-1 sm:col-span-1 content-center text-teal-800">
+              <a href="/menu/2"><p class="font-bold text-2xl">Red Lobster</p></a>
+              <p>4416 Chapel Hill Blvd.</p>
+              <p>Durham, NC 27707</p>
+              <p><a href="tel:9194933566">(919) 493-3566</a></p>
+            </div>
+          </div>
+          <!--CHIPOTLE CONTAINER-->
+          <div class="grid lg:col-span-1 grid-cols-2 gap-4 bg-white rounded-lg">
+            <!--Clickable background img-->
+            <div class="p-2">
+              <a href="/menu/3" class="grid lg:col-span-1 sm:col-span-1"><img src="../public/images/chipotle.jpg" alt="Chipotle" class="rounded-lg"></a>
+            </div>
+            <!--NAME, ADDRESS, CONTACT-->
+            <div class="grid lg:col-span-1 sm:col-span-1 content-center text-teal-800">
+              <a href="/menu/1"><p class="font-bold text-2xl">Chipotle</p></a>
+              <p>3800 N Roxboro St.</p>
+              <p>Durham, NC 27704</p>
+              <p><a href="tel:9194711662">(919) 471-1662</a></p>
+            </div>
+          </div>
+          <!--LITTLER CONTAINER-->
+          <div class="grid lg:col-span-1 grid-cols-2 gap-4 bg-white rounded-lg">
+            <!--Clickable background img-->
+            <div class="p-2">
+              <a href="/menu/4" class="grid lg:col-span-1 sm:col-span-1"><img src="../public/images/littler.jpg" alt="Littler" class="rounded-lg"></a>
+            </div>
+            <!--NAME, ADDRESS, CONTACT-->
+            <div class="grid lg:col-span-1 sm:col-span-1 content-center text-teal-800">
+              <a href="/menu/4"><p class="font-bold text-2xl">Littler</p></a>
+              <p>110 E Parrish St.</p>
+              <p>Durham, NC 27701</p>
+              <p><a href="tel:9193741118">(919) 374-1118</a></p>
+            </div>
+          </div>
+          <!--FARMSIDE KITCHEN CONTAINER-->
+          <div class="grid lg:col-span-1 grid-cols-2 gap-4 bg-white rounded-lg">
+            <!--Clickable background img-->
+            <div class="p-2">
+              <a href="/menu/4" class="grid lg:col-span-1 sm:col-span-1"><img src="../public/images/farmside_kitchen.jpg" alt="Farmside Kitchen" class="rounded-lg"></a>
+            </div>
+            <!--NAME, ADDRESS, CONTACT-->
+            <div class="grid lg:col-span-1 sm:col-span-1 content-center text-teal-800">
+              <a href="/menu/5"><p class="font-bold text-2xl">Farmside Kitchen</p></a>
+              <p>5431 Page Rd.</p>
+              <p>Durham, NC 27703</p>
+              <p><a href="tel:9842192739">(984) 219-2739</a></p>
+            </div>
+          </div>
+          <!--THE GOAT DURHAM CONTAINER-->
+          <div class="grid lg:col-span-1 grid-cols-2 gap-4 bg-white rounded-lg">
+            <!--Clickable background img-->
+            <div class="p-2">
+              <a href="/menu/4" class="grid lg:col-span-1 sm:col-span-1"><img src="../public/images/the_goat_durham.jpg" alt="The Goat Durham" class="rounded-lg"></a>
+            </div>
+            <!--NAME, ADDRESS, CONTACT-->
+            <div class="grid lg:col-span-1 sm:col-span-1 content-center text-teal-800">
+              <a href="/menu/6"><p class="font-bold text-2xl">The Goat Durham</p></a>
+              <p>5600 Primary Dr.</p>
+              <p>Durham, NC 27560</p>
+              <p><a href="tel:9199819405">(919) 981-9405</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="text-center" id="contact-us">
+        <h3 class="text-teal-800 text-xl font-bold">
+            Contact Us
+        </h3>
+        <p>
+              <div class="contact py-6">
+                <ul>
+                  <li>
+                    <a class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="tel:123-567-918">Phone</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-500 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="https://github.com/" target="_blank">Github</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-400 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="https://gmail.com" target="_blank">Gmail</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-300 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="http://twitter.com" target="_blank">Twitter</a>
+                  </li>
+                  <li>
+                    <a class="button bg-teal-200 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+                    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" href="http://facebook.com" target="_blank">Facebook</a>
+                  </li>
+                </ul>
+              </div>
+        </p>
+        <a class="text-teal-800 underline hover:text-teal-400 duration-200 static"href="#top">Back to top</a><br />
+
+    </footer>
+
+    <script>
+        function navMenu(e){
+            const list = document.querySelector('ul');
+
+            e.name === 'menu' ? (e.name = "close" ,list.classList.add('top-[50px]') ,list.classList.add('opacity-100'))
+            :( e.name = "menu" ,list .classList.remove('top-[50px]') ,list.classList.remove('opacity-100'))
+        }
+    </script>
+</body>
+
+</html>

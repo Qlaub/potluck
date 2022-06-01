@@ -2,6 +2,27 @@ require('dotenv').config();
 const router = require('express').Router();
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 const {updateRestaurantBalance, updateCustomerDonationBalance} = require('../utils/routeHelper');
+const { Restaurant } = require('../models');
+
+// order
+router.get('/', (req, res) => {
+  // checks if user is logged in
+  if (!req.session.loggedIn) {
+    // res.render used instead of redirect because it allows passing a custom message
+    res.render('login', {message: 'Please log in to order!'});
+    return;
+  }
+
+  Restaurant.findAll()
+    .then(dbRestaurantData => {
+      const restaurants = dbRestaurantData.map(restaurant => restaurant.get({plain: true}));
+      res.render('order', {restaurants: restaurants, session: req.session});
+    })
+    .catch(err => { 
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
 
 // completed donation
 router.get('/donation-success', async (req, res) => {

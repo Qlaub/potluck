@@ -38,18 +38,6 @@ router.get('/donate', (req, res) => {
     });
   });
 
-// order
-router.get('/order', (req, res) => {
-  // checks if user is logged in
-  if (!req.session.loggedIn) {
-    // res.render used instead of redirect because it allows passing a custom message
-    res.render('login', {message: 'Please log in to order!'});
-    return;
-  }
-
-  res.render('order', {session: req.session});
-});
-
 
 router.get('/menu', (req, res) => {
 

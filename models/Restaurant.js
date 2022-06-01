@@ -9,7 +9,6 @@ class Restaurant extends Model {}
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true
       },
       name: {
         type: DataTypes.STRING,
@@ -18,6 +17,18 @@ class Restaurant extends Model {}
       balance: {
         type: DataTypes.INTEGER,
         allowNull: true
+      },
+      address1: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      address2: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false
       },
     }, 
     { 
