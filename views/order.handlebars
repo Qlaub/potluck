@@ -5,12 +5,12 @@
     <!--SPECIFIC RESTAURANT CONTAINER-->
     <restaurant class="grid lg:col-span-1 grid-cols-2 gap-4 bg-white rounded-lg cursor-pointer hover:bg-white/90" data-id="{{restaurant.id}}">
       <!--restaurant img-->
-      <div class="min-w-275 h-52 max-w-276 p-2 lg:p-3">
+      <div class="h-52 p-2 lg:p-3">
         <img src="/images/{{restaurant.id}}.jpg" alt="{{restaurant.name}}" class="w-full h-full object-cover rounded-lg">
       </div>
       <!--NAME, ADDRESS, CONTACT-->
       <div class="grid col-span-1 content-center lg:ml-4 text-teal-800 lg:p-3">
-        <a href="/menu/{{restaurant.id}}"><p class="font-bold text-2xl">{{restaurant.name}}</p></a>
+        <p class="font-bold text-2xl">{{restaurant.name}}</p>
         <p>{{restaurant.address1}}</p>
         <p>{{restaurant.address2}}</p>
         <p>{{restaurant.phone}}</p>
