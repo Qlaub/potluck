@@ -27,6 +27,7 @@
     "express-session": "^1.17.3",
     "mysql2": "^2.3.3",
     "node-fetch": "^2.6.7",
+    "nodemailer": "^6.7.5",
     "nodemon": "^2.0.16",
     "sequelize": "^6.19.2",
     "stripe": "^9.2.0"
