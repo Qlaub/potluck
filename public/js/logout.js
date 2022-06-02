@@ -4,7 +4,7 @@ const logout = async () => {
         headers: { 'Content-Type': 'application/json'}
     });
     response.ok ? 
-    document.location.replace('/') :
+    document.location.replace('/login') :
     alert(response.StatusText);
 }
 

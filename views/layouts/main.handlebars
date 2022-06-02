@@ -4,7 +4,7 @@
 
 <head>
     <title>PotLuck: Order, Donate, and Share</title>
-    <link rel="shortcut icon" type="image/x-icon" href="./images/PotLuck-nobg.png" />
+    <link rel="shortcut icon" type="image/x-icon" href="/images/PotLuck-nobg.png" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,7 +26,7 @@
         <!--Name and logo-->
         <div class="flex">
           <a href='/about' class="text-6xl z-[2] relative hover:text-teal-200 duration-200 self-end">PotLuck</a>
-          <img class ="h-18 w-32 md:inline-block hidden" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
+          <img class ="h-18 w-32 md:inline-block hidden" src="/images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
         </div>
         
         <!--Navbar-->
@@ -54,7 +54,7 @@
         {{#if session.loggedIn}}
         <div class="flex justify-between gap-2">
           <div class="text-xl text-teal-800 text-bold self-center">{{session.username}}</div>
-          <img class="h-8 w-8 self-center" src="./images/profile-icon.png" alt="">
+          <img class="h-8 w-8 self-center" src="/images/profile-icon.png" alt="">
           <button class="logoutBtn text-lg px-4 py-1 rounded-lg text-white hover:bg-rose-600 bg-rose-400 duration-200 self-center">Logout</button>
         </div>
         {{else}}

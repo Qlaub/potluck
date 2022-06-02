@@ -13,13 +13,6 @@ router.get('/about', (req, res) => {
 
 // donate
 router.get('/donate', (req, res) => {
-  // checks if user is logged in
-  if (!req.session.loggedIn) {
-    // res.render used instead of redirect because it allows passing a custom message
-    res.render('login', {message: 'Please log in to donate!'});
-    return;
-  }
-
   Restaurant.findAll({
     include: [
       {
@@ -41,7 +34,7 @@ router.get('/donate', (req, res) => {
 
 router.get('/menu', (req, res) => {
 
-  res.render('menu', {session: req.session});
+  res.redirect('/order');
 }); 
 
 //checks if a user is already logged in

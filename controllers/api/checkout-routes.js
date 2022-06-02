@@ -8,6 +8,13 @@ const { checkForCoupon } = require('../../utils/discountHelper');
 // Donation route
 // Stripe expects req.body to include donation amount in pennies (lol) ex: { amount: 10000 } for $100 donation
 router.post('/donate', async (req, res) => {
+  // checks if user is logged in
+  if (!req.session.loggedIn) {
+    // res.render used instead of redirect because it allows passing a custom message
+    res.json({redirect: true});
+    return;
+  }
+
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -41,6 +48,12 @@ router.post('/donate', async (req, res) => {
 
 // Meal checkout route
 router.post('/:id', async (req, res) => {
+  // checks if user is logged in
+  if (!req.session.loggedIn) {
+    // res.render used instead of redirect because it allows passing a custom message
+    res.json({redirect: 'Please log in to order'});
+    return;
+  }
 
   // validate data
   const dishData = await retrieveDishData(req.params.id);

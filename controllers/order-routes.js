@@ -6,13 +6,6 @@ const { Restaurant } = require('../models');
 
 // order
 router.get('/', (req, res) => {
-  // checks if user is logged in
-  if (!req.session.loggedIn) {
-    // res.render used instead of redirect because it allows passing a custom message
-    res.render('login', {message: 'Please log in to order!'});
-    return;
-  }
-
   Restaurant.findAll()
     .then(dbRestaurantData => {
       const restaurants = dbRestaurantData.map(restaurant => restaurant.get({plain: true}));

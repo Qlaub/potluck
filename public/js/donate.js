@@ -23,8 +23,12 @@ async function donate(restaurantId, amount, restaurantName) {
   let data;
   response.ok ? data = await response.json() : alert(response.statusText);
 
-  // Update page to credit card checkout url
-  window.location = data.url;
+  if (data.redirect) {
+    window.location.href = 'login';
+  } else {
+    // Update page to credit card checkout url
+    window.location = data.url;
+  }
 
   return true;
 };

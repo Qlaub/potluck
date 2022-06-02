@@ -1,5 +1,9 @@
-let router = require('express').Router();
+const router = require('express').Router();
 const { Dish, Restaurant } = require('../models');
+
+router.get('/login', (req, res) => {
+  res.redirect('/login');
+});
 
 router.get('/:id', (req, res) => {
   Restaurant.findOne({
