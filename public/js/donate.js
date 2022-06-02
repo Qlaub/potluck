@@ -74,3 +74,17 @@ donationFormEl.addEventListener('submit', async (event) => {
     donate(restaurantSelectionEl.value, amount, restaurantName);
   }
 });
+
+
+document.querySelector('#testValidate').addEventListener('click', async (event)=> {
+  event.preventDefault();
+
+    const response = await fetch('/api/customers/validate', {
+      method: 'GET'
+    });
+
+    let data;
+    response.ok ? data = await response.json() : console.log(response.statusText);
+
+    console.log(data);
+})

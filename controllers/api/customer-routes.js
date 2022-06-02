@@ -4,7 +4,7 @@ const { Customer, Badge } = require('../../models');
 // Supports show-all-customers option if we're still implementing it
 router.get('/', (req, res) => {
     Customer.findAll({
-        attributes: { exclude: ['password'] }
+        attributes: { exclude: ['password', 'validation_key', 'validated_email'] }
     })
     .then(dbCustomerData => res.json(dbCustomerData))
     .catch(err => {
@@ -13,13 +13,31 @@ router.get('/', (req, res) => {
     });
 });
 
+// get email validation key
+router.get('/validate', (req, res) => {
+  Customer.findOne({
+    where: {
+      id: req.session.customer_id
+    },
+    attributes: { exclude: ['password', 'id', 'total_donated', 'username'] }
+  })
+  .then(dbCustomerData => res.json(dbCustomerData))
+  .catch(err => {
+     console.log(err);
+     res.status(500).json(err);
+  });
+});
+
 // Supports User Sign-Up
 router.post('/', (req, res) => {
     Customer.create({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
-      total_donated: 0
+      total_donated: 0,
+      validated_email: 0,
+      // random 6-digit key generated
+      validation_key: Math.floor(100000 + Math.random() * 900000)
     })
     .then(dbCustomerData => {
       req.session.save(() => {

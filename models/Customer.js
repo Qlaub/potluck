@@ -35,6 +35,15 @@ class Customer extends Model {
         type: DataTypes.INTEGER,
         allowNull: true,
       },
+      validated_email: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        defaultValue: 0
+      },
+      validation_key: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      }
     }, 
     {
       hooks: {
