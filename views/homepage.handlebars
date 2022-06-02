@@ -1,48 +1,30 @@
-<!--sign up botton that deploys modal for user input-->
-        <div class="static container mx-4 py-10">
-            <p class="text-2xl font-bold [Helvetica] text-teal-800 text-center">Sign Up</p>
-            <!--sign up form-->
-            <form class ="block bg-teal-100 mx-40 py-10">
-                <!--username input field-->
-                <span class="block text-sm font-medium text-slate-700">
-                <label for="signUpUsername">Username:</label><br>
-                <input type="text" id="signUpUsername" name="username" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
-                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Username Here"><br>
-                <!--email input field-->
-                <label for="user-email">Email:</label><br>
-                <input type="text" id="signUpEmail" name="user-emaill" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 
-                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="you@example.com"><br>
-                <!--passowrd input field-->
-                <label for="signUpPassword">Password:</label><br>
-                <input type="text" id="password" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
-                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="********">
-                <input type="click" value="Sign Up" id="signUpBtn" class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
-            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-            </span>
-        </form>
-        
-            
-        </div>
+<section class="grid place-items-center">
+  <div class="lg:mx-56 xl:mx-96 bg-white rounded-3xl">
+    <h2 class="text-5xl text-teal-800 font-bold my-5 py-5 mx-4 md:mx-6">
+      What is PotLuck?
+    </h2>
+    <p class="text-teal-900 text-lg mx-4 md:mx-6 mb-10 pb-10 border-b border-teal-400">
+        PotLuck is a food-service app created by four
+        junior programmers to add a new take on the online
+        food ordering industry. PotLuck is unique in that
+        it's users can donate any amount of money to add to
+        the PotLuck's pool. Then PotLuck will use that donated
+        money to pay for another users meal. The idea came from
+        the pay-it-forwards that typically happen when a generous
+        individual will pay for the cars order behind them in a
+        drive-thru. Join PotLuck today and help the hungry in local
+        area today!
+    </p>
+    <p class="text-teal-900 text-center font-bold text-lg md:mx-6 mb-6">
+      Get started by using the buttons below to donate or place an order!
+    </p>
 
-        <!--sign in botton that deploys modal for user input-->
-        <div class="static container mx-4 py-10">
-            <p class="text-2xl font-bold [Helvetica] text-teal-800 text-center">Sign In</p>
-            <!--sign in form-->
-            <form class="block bg-teal-100 mx-40 py-10">
-                <!--username input field-->
-                <span class="block text-sm font-medium text-slate-700">
-                <label for="email">Email:</label><br>
-                <input type="text" id="loginEmail" name="email" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
-                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="Username Here"><br>
-                <!--passowrd input field-->
-                <label for="password">Password:</label><br>
-                <input type="text" id="loginPassword" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300
-                placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" placeholder="********">
-                <input type="click" value="Sign In" id="loginBtn" class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
-            rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-            </span>
-        </form>
-            
-        </div>
+    <div class="flex justify-center gap-1 md:gap-4 mb-6 pb-4">
+      <button onclick="window.location.href='/donate';" id="donateBtn" class="button col-span-1 mx-8 w-full md:w-52 bg-teal-600 py-6 text-center inline-block px-6 py-2.5 text-white font-medium text-md leading-tight uppercase
+          rounded-xl shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Donate</button>
+      <button onclick="window.location.href='/order';" id="orderBtn" class="button col-span-1 mx-8 w-full md:w-52 bg-teal-600 py-6 text-center inline-block px-6 py-2.5 text-white font-medium text-md leading-tight uppercase
+          rounded-xl shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">Order</button>
+    </div>    
+  </div>
+</section>
 
-<script src="/js/login.js"></script>

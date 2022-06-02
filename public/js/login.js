@@ -29,7 +29,7 @@ let signupOption = async event => {
       });
   
       response.ok ?
-      console.log("User has successfully been created") :
+      window.location.href = '/' :
       alert(response.statusText);
     }
   }
