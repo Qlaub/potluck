@@ -1,0 +1,14 @@
+<div class="flex justify-between h-screen p-7">
+  <h2 class="text-6xl">{{restaurantData.name}}</h2>
+  <form class="flex flex-col basis-1/3 w-40 mt-10">
+  {{#each restaurantData.dishes as |dish|}}
+    <label class="basis-2 h-10 mx-1 my-1 font-bold">{{dish.name}}: ${{to_dollars dish.price_in_cents}}</label>
+    <input class="h-10 mx-1 my-1 pl-2 rounded" type="number" min="0" max="10" placeholder="Quantity" id="{{dish.id}}">
+  {{/each}}
+  </form>
+  <div class="basis-1/4 flex">
+  <button id="orderBtn" class="basis-1/2 h-10 mt-40 bg-blue-500 hover:bg-blue-700 text-white text-xs font-bold py-2 px-4 rounded-full">Order Food</button>
+  </div>
+</div>
+
+<script src="/js/menu.js"></script>

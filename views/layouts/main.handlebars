@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>PotLuck: Order, Donate, and Share</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/images/PotLuck-nobg.png" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body class="bg-teal-200">
+  <!--nav to footer/contact info-->
+  <nav class="px-6 pb-6 pt-4 bg-white md:flex md:items-center md:justify-between">
+    <!--nav to main page, order, suggest a restaurant, chat??, guest view, and contact info-->
+    <div class="flex justify-between items center">
+      <span class="text-5xl cursor-pointer mx-2 md:hidden block z-[2]">
+        <ion-icon name="menu" onclick="navMenu(this)"></ion-icon>
+      </span>
+
+      <span class="text-5xl font-bold [Open_Sans] text-teal-400">
+        <!--Name and logo-->
+        <div class="flex">
+          <a href='/about' class="text-6xl z-[2] relative hover:text-teal-200 duration-200 self-end">PotLuck</a>
+          <img class ="h-18 w-32 md:inline-block hidden" src="/images/PotLuck-nobg.png" alt="PotLuck Logo Pig">
+        </div>
+        
+        <!--Navbar-->
+        <!--<img class="absolute top-0 left-50 h-32 w-50 md:opacity-0 opacity-100" src="./images/PotLuck-nobg.png" alt="PotLuck Logo Small Screen">-->
+        <ul class="md:h-10 md:flex md:items-center z-[1] md:z-auto md:static absolute bg-white w-full left-0 md:w-auto md:py-0 pb-4 md:pl-0 pl-7 md:opacity-100
+            opacity:0 top-[-400px] transition-all ease-in-duration-500 border-b-2 border-rose-400 md:border-none">
+          <li class="mx-2 my-3 md:my-0 pt-8 md:pt-0 text-center md:text-left"><a href="/about" class="text-2xl md:text-sm text-rose-400 md:text-teal-400 hover:text-teal-200 duration-200">About</a></li>
+          <li class="mx-2 my-3 md:my-0 text-center md:text-left"><a href="/order" class="text-2xl md:text-sm text-rose-400 hover:text-teal-200 md:text-teal-400 duration-200">Order</a></li>
+          <li class="mx-2 my-3 md:my-0 text-center md:text-left"><a href="/donate" class="text-2xl md:text-sm text-rose-400 hover:text-teal-200 md:text-teal-400 duration-200">Donate</a></li>
+          <li class="mx-2 my-3 md:my-0 hidden md:list-item"><a href="#contact-us" class="text-sm hover:text-teal-200 duration-200">Contact</a></li>
+          <!--Login/logout shows in list when below md size-->
+          {{#if session.loggedIn}}
+          <div class="md:hidden w-52 mx-auto inline-block pt-4 mt-6 border-t-2 border-rose-100 flex justify-center gap-4">
+            <div class="text-2xl text-teal-800 text-bold self-center">{{session.username}}</div>
+            <button class="logoutBtn text-2xl px-5 py-3 rounded-full text-white hover:bg-rose-100 hover:text-rose-600 bg-rose-500 duration-200 self-center">Logout</button>
+          </div>
+          {{else}}
+          <li class="md:hidden list-item mx-2 my-3 md:my-0 text-center"><a href="/login" class="text-2xl hover:text-teal-200 duration-200">Login/Sign-Up</a></li>
+          {{/if}}
+        </ul>
+      </span>
+    </div>
+    <!--Login/logout buttons show when above md size-->
+      <div class="hidden md:flex md:justify-self-end md:self-end">
+        {{#if session.loggedIn}}
+        <div class="flex justify-between gap-2">
+          <div class="text-xl text-teal-800 text-bold self-center">{{session.username}}</div>
+          <img class="h-8 w-8 self-center" src="/images/profile-icon.png" alt="">
+          <button class="logoutBtn text-lg px-4 py-1 rounded-lg text-white hover:bg-rose-600 bg-rose-400 duration-200 self-center">Logout</button>
+        </div>
+        {{else}}
+        <div class=""><a href="/login" class="text-2xl hover:text-rose-500 duration-200">Login/Sign-Up</a></div>
+        {{/if}}
+      </div>
+  </nav>
+  
+  <main class="lg:p-10 p-4">
+    {{{ body }}}
+  </main>
+
+  <!--contact info & link to top of app-->
+  <footer class="text-center" id="contact-us">
+    <h3 class="text-teal-800 text-3xl font-bold">
+        Contact Us
+    </h3>
+    <p>
+      <div class="contact py-6">
+        <ul class="list-item">
+          <li>
+            <a class="button bg-rose-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out" href="tel:123-567-918">Phone</a>
+          </li>
+          <li>
+            <a class="button bg-rose-500 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out" href="https://github.com/" target="_blank">Github</a>
+          </li>
+          <li>
+            <a class="button bg-rose-400 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out" href="https://gmail.com" target="_blank">Gmail</a>
+          </li>
+          <li>
+            <a class="button bg-rose-300 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
+            rounded shadow-md hover:bg-teal-700 hover:shadow-lg active:shadow-lg transition duration-150 ease-in-out" href="http://twitter.com" target="_blank">Twitter</a>
+          </li>
+
+        </ul>
+      </div>
+    </p>
+    <a class="md:hidden inline-block text-teal-800 text-lg underline hover:text-teal-400 duration-200 static"href="#top">Back to top</a><br />
+  </footer>
+
+  <script>
+      function navMenu(e){
+          const list = document.querySelector('ul');
+
+          e.name === 'menu' ? (e.name = "close" ,list.classList.add('top-[50px]') ,list.classList.add('opacity-100'))
+          :( e.name = "menu" ,list .classList.remove('top-[50px]') ,list.classList.remove('opacity-100'))
+      }
+  </script>
+  {{#if session.loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+
+</body>
+</html>

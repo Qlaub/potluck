@@ -1,11 +1,18 @@
 const router = require('express').Router();
 const { Dish, Restaurant } = require('../../models');
 const { Op } = require('sequelize');
-const dishIds = require('../../utils/routeHelper');
+const {dishIds} = require('../../utils/routeHelper');
 
 // Get all restaurants
 router.get('/', (req, res) => {
-  Restaurant.findAll()
+  Restaurant.findAll({
+    include: [
+      {
+        model: Dish,
+        attributes: ['id', 'price_in_cents', 'name']
+      }
+    ]
+  })
     .then(dbRestaurantData => res.json(dbRestaurantData))
     .catch(err => {
       console.log(err);
@@ -13,24 +20,70 @@ router.get('/', (req, res) => {
     });
 });
 
+// find all dishes from a restaurant
+router.get('/dishes/:id', (req, res) => {
+  Dish.findAll({
+    where: {
+      restaurant_id: req.params.id
+    },
+    include: [
+      {
+        model: Restaurant,
+        attributes: ['name']
+      }
+    ]
+  })
+    .then(dbDishData => {
+      if (!dbDishData) {
+        res.status(404).json({ message: 'No restaurant with that id found' })
+        return;
+      }
+      res.json(dbDishData);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
+// find current available discount balance from a restaurant
+router.get('/balance/:id', (req, res) => {
+  Restaurant.findOne({
+    where: {
+      id: req.params.id
+    },
+    attributes: [
+      'balance'
+    ]
+  })
+    .then(dbRestaurantData => {
+      if (!dbRestaurantData) {
+        res.status(404).json({ message: 'No restaurant with that id found' })
+        return;
+      }
+      res.json(dbRestaurantData);
+    })
+    .catch(err => {
+      res.status(500).json(err);
+    });
+});
+
 // Find all menu items with matching ID values
 // expects request with json body as { ids: [1, 2, 3, 4, etc...] } - each integer being the id of a particular dish selected for checkout
-router.put('/dishes/', (req, res) => {
+router.put('/dishes', (req, res) => {
   Dish.findAll({
     where: {
       [Op.or]: dishIds(req.body.ids) // function to take ids from req.body and split id values into array of objects
     },
-    attributes: ['price_in_cents', 'name']
+    attributes: ['price_in_cents', 'name', 'restaurant_id'],
   })
     .then(dbDishData => {
       if (!dbDishData) {
         res.status(404).json({ message: 'No dish found with this id '});
         return;
       }
-      res.json(dbDishData)
+      res.json(dbDishData);
     })
     .catch(err => {
-      console.log(err);
       res.status(500).json(err);
     });
 });

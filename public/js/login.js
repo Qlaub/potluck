@@ -1,12 +1,19 @@
 // dom elements will go here
+const signUpUsernameEl = document.querySelector('#signUpUsername');
+const signUpEmailEl = document.querySelector('#signUpEmail');
+const signUpPasswordEl = document.querySelector('#signUpUsername');
+const loginEmailEl = document.querySelector('#loginEmail');
+const loginPasswordEl = document.querySelector('#loginPassword');
+const signUpBtnEl = document.querySelector('#signUpBtn');
+const loginBtnEl = document.querySelector('#loginBtn');
 
-// hardcoded until html and css are finished
+// Removed hardcoded values and added dom elements
 // signup pathway for new users
 let signupOption = async event => {
-  //event.preventDefault() --if form
-    const username = "Sonny";
-    const email = "sonny@yesmail.com";
-    const password = "sonny1";
+  event.preventDefault();
+    const username = signUpUsernameEl.value.trim();
+    const email = signUpEmailEl.value.trim();
+    const password = signUpPasswordEl.value.trim();
 
     console.log(username, email, password);
 
@@ -22,15 +29,16 @@ let signupOption = async event => {
       });
   
       response.ok ?
-      console.log("User has successfully been created") :
+      window.location.href = '/' :
       alert(response.statusText);
     }
   }
   
   // login pathway for existing users
   let loginOption = async event => {
-    const email = "sonny@yesmail.com";
-    const password = "sonny1"
+    event.preventDefault();
+    const email = loginEmailEl.value.trim();
+    const password = loginPasswordEl.value.trim();
   
     if (email && password) {
       const response = await fetch('/api/customers/login', {
@@ -42,6 +50,10 @@ let signupOption = async event => {
         headers: { 'Content-Type': 'application/json' }
       });
 
-      response.ok ? document.location.replace('/') : /* replace this path with the one that will be used after log-in */
+      response.ok ? document.location.replace('/about') : 
       alert(response.statusText); }
     }
+
+loginBtnEl.addEventListener('click', loginOption);
+
+signUpBtnEl.addEventListener('click', signupOption);

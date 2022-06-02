@@ -1,8 +1,12 @@
-const button = document.querySelector('#donateBtn');
-const donationFieldEl = document.querySelector('#donateInput')
+const buttonEl = document.querySelector('#donateBtn');
+const donationFormEl = document.querySelector('#donateForm');
+const restaurantSelectionEl = document.querySelector('#restaurant');
+const radioButtonEls = document.querySelectorAll('input[type="radio"]');
+
+console.log(radioButtonEls)
 
 // Amount argument expected as an integer in pennies
-async function donate(amount) {
+async function donate(restaurantId, amount, restaurantName) {
   // post request to credit card checkout
   const response = await fetch('/api/checkout/donate', {
     method: 'POST',
@@ -10,23 +14,63 @@ async function donate(amount) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      amount: amount
+      restaurantId: restaurantId,
+      amount: amount,
+      name: restaurantName
     })
   });
 
   let data;
   response.ok ? data = await response.json() : alert(response.statusText);
 
-  // Update page to credit card checkout url
-  window.location = data.url;
+  if (data.redirect) {
+    window.location.href = 'login';
+  } else {
+    // Update page to credit card checkout url
+    window.location = data.url;
+  }
 
   return true;
 };
 
-button.addEventListener('click', (e) => {
-  e.preventDefault();
+function getUserValue() {
+  const customDonationEl = document.querySelector('#customAmount');
+  const customDonation = customDonationEl.value.trim();
+  let value;
 
+  radioButtonEls.forEach(button => {
+    // validate custom donation
+    if (button.dataset.amount === "custom" && button.checked) {
+      console.log(button)
+      value = customDonation;
+    } else if (button.checked) {
+      value = button.dataset.amount;
+      console.log(button.value)
+    }
+  });
+
+  console.log(value)
+
+  // validate
+  if (!value || !Number.isInteger(parseInt(value))) {
+    customDonationEl.classList.add('placeholder-red-500');
+    customDonationEl.value = '';
+    customDonationEl.placeholder = 'Please click on or enter a valid donation amount';
+    
+    return false;
+  }
+
+  return value;
+}
+
+donationFormEl.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  
+  const restaurantName = restaurantSelectionEl.options[restaurantSelectionEl.selectedIndex].text;
   // NEED INPUT VALIDATION
-  let amount = donationFieldEl.value * 100 // Stripe expects amount in pennies
-  donate(amount);
+  let amount = getUserValue() * 100; // Stripe expects amount in pennies
+
+  if (amount) {
+    donate(restaurantSelectionEl.value, amount, restaurantName);
+  }
 });

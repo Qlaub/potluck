@@ -43,6 +43,7 @@ async function checkout(dishes) {
 
 button.addEventListener('click', async () => {
   const dishes = await getDishes(testIds, testQuantities);
+  console.log(dishes)
   checkout(dishes);
 });
 
