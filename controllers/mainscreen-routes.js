@@ -52,7 +52,7 @@ router.get('/login', (req, res) => {
       res.redirect('/');
       return;
     }
-    res.render('login', {session: req.session});
+    res.render('login', {session: req.session, loginPage: true});
 });
 
 module.exports = router;
