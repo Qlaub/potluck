@@ -3,8 +3,6 @@ const donationFormEl = document.querySelector('#donateForm');
 const restaurantSelectionEl = document.querySelector('#restaurant');
 const radioButtonEls = document.querySelectorAll('input[type="radio"]');
 
-console.log(radioButtonEls)
-
 // Amount argument expected as an integer in pennies
 async function donate(restaurantId, amount, restaurantName) {
   // post request to credit card checkout
@@ -16,7 +14,7 @@ async function donate(restaurantId, amount, restaurantName) {
     body: JSON.stringify({
       restaurantId: restaurantId,
       amount: amount,
-      name: restaurantName
+      name: restaurantName,
     })
   });
 
@@ -24,7 +22,7 @@ async function donate(restaurantId, amount, restaurantName) {
   response.ok ? data = await response.json() : alert(response.statusText);
 
   if (data.redirect) {
-    window.location.href = 'login';
+    window.location.href = `${data.redirect}`;
   } else {
     // Update page to credit card checkout url
     window.location = data.url;
@@ -48,8 +46,6 @@ function getUserValue() {
       console.log(button.value)
     }
   });
-
-  console.log(value)
 
   // validate
   if (!value || !Number.isInteger(parseInt(value))) {
@@ -76,15 +72,15 @@ donationFormEl.addEventListener('submit', async (event) => {
 });
 
 
-document.querySelector('#testValidate').addEventListener('click', async (event)=> {
-  event.preventDefault();
+// document.querySelector('#testValidate').addEventListener('click', async (event)=> {
+//   event.preventDefault();
 
-    const response = await fetch('/api/customers/validate', {
-      method: 'GET'
-    });
+//     const response = await fetch('/api/customers/validate', {
+//       method: 'GET'
+//     });
 
-    let data;
-    response.ok ? data = await response.json() : console.log(response.statusText);
+//     let data;
+//     response.ok ? data = await response.json() : console.log(response.statusText);
 
-    console.log(data);
-})
+//     console.log(data);
+// })

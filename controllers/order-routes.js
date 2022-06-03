@@ -22,7 +22,7 @@ router.get('/donation-success', async (req, res) => {
   // checks if user is logged in
   if (!req.session.loggedIn) {
     // res.render used instead of redirect because it allows passing a custom message
-    res.render('login', {message: 'Please log in to donate!'});
+    res.render('login', {message: 'Please log in to donate!', session: req.session});
     return;
   }
 
@@ -57,7 +57,7 @@ router.get('/success', async (req, res) => {
   // checks if user is logged in
   if (!req.session.loggedIn) {
     // res.render used instead of redirect because it allows passing a custom message
-    res.render('login', {message: 'Please log in to order!'});
+    res.render('login', {message: 'Please log in to order!', session: req.session});
     return;
   }
 

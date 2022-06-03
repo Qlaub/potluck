@@ -60,7 +60,7 @@ router.get('/verify/:id', async (req, res) => {
       const email = prepareVerificationEmail(data.validation_key, verificationLink);
       // sendEmail expects data.email as an email address string, and email as an object with a subject and text
       sendEmail(data.email, email);
-      res.render('emailValidate');
+      res.render('emailValidate', {session: req.session});
       return;
     }
     //user potentially entered the verification key as a part of the href
@@ -77,7 +77,7 @@ router.get('/verify/:id', async (req, res) => {
     response.ok ? data = await response.json() : console.log(response.statusText);
 
     if (data && !data.validated_email) {
-      res.render('emailValidate');
+      res.render('emailValidate', {session: req.session});
       return;
       // user has mistakenly tried to go to the verification url, redirected
     } else {
@@ -85,6 +85,11 @@ router.get('/verify/:id', async (req, res) => {
       return;
     }
   }
+});
+
+// email successfully validated screen
+router.get('/validated', (req, res) => {
+  res.render('validated', {session: req.session});
 });
 
 router.get('/menu', (req, res) => {

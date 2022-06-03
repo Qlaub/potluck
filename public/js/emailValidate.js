@@ -19,9 +19,7 @@ async function verify (event) {
   let data;
   response.ok ? data = await response.json() : alert(response.statusText);
 
-  console.log(data.href)
-
-  window.location.href = `${data.href}`
+  window.location.pathname = `${data.href}`;
 }
 
 document.querySelector('#verificationBtn').addEventListener('click', verify);

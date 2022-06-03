@@ -25,7 +25,7 @@ async function checkout (event) {
   response.ok ? data = await response.json() : alert(response.statusText);
 
   if (data.redirect) {
-    window.location.href = 'login'
+    window.location.pathname = `${data.redirect}`
   } else {
     // Update page to credit card checkout url
     window.location = data.url;

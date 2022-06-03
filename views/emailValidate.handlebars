@@ -1,9 +1,13 @@
 <div class="grid place-items-center">
-  <div class="bg-white p-8">
-    <h2 class="text-teal-800">A verification code has been sent to your email!</h2>
-    <p class="text-teal-800">Please enter the verification code below:</p>
-    <input type="text" class="border-2 border-black" id="verificationInput">
-    <button class="bg-teal-700 text-white rounded-full px-6 py-4" id="verificationBtn">Verify</button>
+  <div class="bg-white p-8 border-2 border-teal-400 rounded-md">
+    {{#if message}}
+    <p class="text-rose-600 font-2xl">You need to verify your email before you can do that!</p>
+    {{/if}}
+    <h2 class="text-teal-800 pb-4 text-2xl">A verification code has been sent to your email!</h2>
+    <p class="text-teal-800 text-lg pb-1">Please enter the verification code below:</p>
+    <input type="text" class="border-2 border-black text-lg" id="verificationInput">
+    <button class="bg-teal-700 text-white rounded-full px-6 py-1 mb-8" id="verificationBtn">Verify</button>
+    <p class="text-teal-800 text-md">You must verify your email before you can place orders or make donations.</p>
   </div>
 </div>
 
