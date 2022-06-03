@@ -6,6 +6,7 @@ const loginEmailEl = document.querySelector('#loginEmail');
 const loginPasswordEl = document.querySelector('#loginPassword');
 const signUpBtnEl = document.querySelector('#signUpBtn');
 const loginBtnEl = document.querySelector('#loginBtn');
+const signInFormEl = document.querySelector('#signInForm');
 
 // Removed hardcoded values and added dom elements
 // signup pathway for new users
@@ -40,25 +41,25 @@ let signupOption = async event => {
     }
   }
   
-  // login pathway for existing users
-  let loginOption = async event => {
-    event.preventDefault();
-    const email = loginEmailEl.value.trim();
-    const password = loginPasswordEl.value.trim();
-  
-    if (email && password) {
-      const response = await fetch('/api/customers/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          email,
-          password
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
+// login pathway for existing users
+let loginOption = async event => {
+  event.preventDefault();
+  const email = loginEmailEl.value.trim();
+  const password = loginPasswordEl.value.trim();
 
-      response.ok ? document.location.replace('/about') : 
-      alert(response.statusText); }
-    }
+  if (email && password) {
+    const response = await fetch('/api/customers/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    response.ok ? document.location.replace('/about') : 
+    alert(response.statusText); }
+  }
 
 loginBtnEl.addEventListener('click', loginOption);
 

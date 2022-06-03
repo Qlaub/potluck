@@ -39,11 +39,9 @@ function getUserValue() {
   radioButtonEls.forEach(button => {
     // validate custom donation
     if (button.dataset.amount === "custom" && button.checked) {
-      console.log(button)
       value = customDonation;
     } else if (button.checked) {
       value = button.dataset.amount;
-      console.log(button.value)
     }
   });
 
@@ -66,21 +64,9 @@ donationFormEl.addEventListener('submit', async (event) => {
   // NEED INPUT VALIDATION
   let amount = getUserValue() * 100; // Stripe expects amount in pennies
 
-  if (amount) {
+  if (restaurantSelectionEl.value === 'Restaurant') {
+    return false;
+  } else if (amount) {
     donate(restaurantSelectionEl.value, amount, restaurantName);
   }
 });
-
-
-// document.querySelector('#testValidate').addEventListener('click', async (event)=> {
-//   event.preventDefault();
-
-//     const response = await fetch('/api/customers/validate', {
-//       method: 'GET'
-//     });
-
-//     let data;
-//     response.ok ? data = await response.json() : console.log(response.statusText);
-
-//     console.log(data);
-// })
