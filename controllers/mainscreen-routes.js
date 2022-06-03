@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const {Restaurant, Dish} = require('../models/');
+const fetch = require('node-fetch');
+require('dotenv').config();
 
 // homepage
 router.get('/', (req, res) => {
@@ -31,6 +33,25 @@ router.get('/donate', (req, res) => {
     });
   });
 
+// email verification screen
+router.get('/verify/:id', async (req, res) => {
+  const response = await fetch(`${process.env.SERVER_URL}/api/customers/validate`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({id: req.params.id})
+  });
+
+  let data;
+  response.ok ? data = await response.json() : console.log(response.statusText);
+
+  if (data.id === req.session.customer_id && !data.validated_email) {
+    res.render('emailValidate');
+  } else {
+    res.redirect('/about');
+  }
+});
 
 router.get('/menu', (req, res) => {
 

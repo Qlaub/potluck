@@ -13,15 +13,24 @@ router.get('/', (req, res) => {
     });
 });
 
-// get email validation key
-router.get('/validate', (req, res) => {
+// get email validation key if email isn't validated
+router.post('/validate', (req, res) => {
   Customer.findOne({
     where: {
-      id: req.session.customer_id
+      id: req.body.id
     },
-    attributes: { exclude: ['password', 'id', 'total_donated', 'username'] }
+    attributes: { exclude: ['password', 'total_donated', 'username'] }
   })
-  .then(dbCustomerData => res.json(dbCustomerData))
+  .then(dbCustomerData => {
+    // checks if user has already validated their email
+    if (dbCustomerData.dataValues.validated_email === 0) {
+      res.json(dbCustomerData);
+    } else if (!dbCustomerData) {
+      res.status(400).json(err);
+    } else {
+      res.json({message: 'Already validated'});
+    }
+  })
   .catch(err => {
      console.log(err);
      res.status(500).json(err);
