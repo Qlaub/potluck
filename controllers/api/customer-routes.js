@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Customer, Badge } = require('../../models');
+const { validateEmail } = require('../../utils/validate');
 
 // Supports show-all-customers option if we're still implementing it
 router.get('/', (req, res) => {
@@ -23,10 +24,54 @@ router.post('/validate', (req, res) => {
   })
   .then(dbCustomerData => {
     // checks if user has already validated their email
-    if (dbCustomerData.dataValues.validated_email === 0) {
+    if (!dbCustomerData) {
+      res.status(404).json({ message: 'No user found with that ID' })
+    } else if (dbCustomerData.dataValues.validated_email === 0) {
       res.json(dbCustomerData);
-    } else if (!dbCustomerData) {
-      res.status(400).json(err);
+    } else {
+      res.json({message: 'Already validated'});
+    }
+  })
+  .catch(err => {
+     console.log(err);
+     res.status(500).json(err);
+  });
+});
+
+// validates users email
+router.put('/validate', async (req, res) => {
+  const valid = await validateEmail(req.body.id, req.body.userInput);
+
+  if (valid) {
+    Customer.update(
+      {
+        validated_email: 1
+      },
+      {
+        where: { id: valid.id }
+      }
+    ).then(dbCustomerData => res.json({ href : 'validated' }))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+  }
+})
+
+// find user by verification code and return verification information
+router.post('/code', (req, res) => {
+  Customer.findOne({
+    where: {
+      validation_key: req.body.code
+    },
+    attributes: { exclude: ['password', 'total_donated', 'username'] }
+  })
+  .then(dbCustomerData => {
+    if (!dbCustomerData) {
+      res.status(404).json();
+    } // checks if user has already validated their email
+    else if (dbCustomerData.dataValues.validated_email === 0) {
+      res.json(dbCustomerData);
     } else {
       res.json({message: 'Already validated'});
     }

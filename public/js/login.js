@@ -28,9 +28,15 @@ let signupOption = async event => {
         headers: { 'Content-Type': 'application/json' }
       });
   
+      let data;
       response.ok ?
-      window.location.href = '/' :
+      // window.location.href = '/' :
+      data = await response.json() :
       alert(response.statusText);
+
+      if (data.id) {
+        window.location.href = `/verify/${data.id}`;
+      }
     }
   }
   

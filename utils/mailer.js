@@ -1,28 +1,44 @@
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 
-let transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PASSWORD
-  },
-  tls: {
-    rejectUnauthorized: false
-  }
-});
+function prepareVerificationEmail(code, link) {
+  const email = {
+    subject: 'PotLuck Verification Code',
+    text: `Thank you for signing-up to PotLuck! Your verification code is ${code}. Click this link to enter the verification code: ${link}`
+  };
 
-let mailOptions = {
-  from: process.env.EMAIL,
-  to: 'e.pirazzi@gmail.com',
-  subject: 'Test email',
-  text: 'test text'
+  return email;
+}
+
+async function sendEmail(userEmail, email) {
+  let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD
+    },
+    tls: {
+      rejectUnauthorized: false
+    }
+  });
+  
+  let mailOptions = {
+    from: process.env.EMAIL,
+    to: userEmail,
+    subject: email.subject,
+    text: email.text
+  };
+  
+  transporter.sendMail(mailOptions, (err, success) => {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log('Email sent successfully!');
+    }
+  });
+}
+
+module.exports = {
+  sendEmail,
+  prepareVerificationEmail
 };
-
-transporter.sendMail(mailOptions, (err, success) => {
-  if(err) {
-    console.log(err);
-  } else {
-    console.log('Email sent successfully!');
-  }
-});
