@@ -1,0 +1,15 @@
+<div class="grid place-items-center">
+  <div class="bg-white p-8 border-2 border-teal-400 rounded-md">
+    {{#if message}}
+    <p class="text-rose-600 font-2xl">You need to verify your email before you can do that!</p>
+    {{/if}}
+    <h2 class="text-teal-800 pb-4 text-2xl">A verification code has been sent to your email!</h2>
+    <p class="text-teal-800 text-lg pb-2">Please enter the verification code below:</p>
+    <input type="text" class="border-2 border-black text-lg lg:w-48 w-full" id="verificationInput">
+    <button class="button my-4 lg:mx-8 w-full md:w-52 bg-teal-600 text-center inline-block px-6 py-2 text-white font-medium text-md leading-tight uppercase
+          rounded-xl shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out" id="verificationBtn">Verify</button>
+    <p class="text-teal-800 text-md pt-2">You must verify your email before you can place orders or make donations.</p>
+  </div>
+</div>
+
+<script src="/js/emailValidate.js"

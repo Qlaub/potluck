@@ -6,6 +6,7 @@ const loginEmailEl = document.querySelector('#loginEmail');
 const loginPasswordEl = document.querySelector('#loginPassword');
 const signUpBtnEl = document.querySelector('#signUpBtn');
 const loginBtnEl = document.querySelector('#loginBtn');
+const signInFormEl = document.querySelector('#signInForm');
 
 // Removed hardcoded values and added dom elements
 // signup pathway for new users
@@ -28,31 +29,37 @@ let signupOption = async event => {
         headers: { 'Content-Type': 'application/json' }
       });
   
+      let data;
       response.ok ?
-      window.location.href = '/' :
+      // window.location.href = '/' :
+      data = await response.json() :
       alert(response.statusText);
+
+      if (data.id) {
+        window.location.href = `/verify/${data.id}`;
+      }
     }
   }
   
-  // login pathway for existing users
-  let loginOption = async event => {
-    event.preventDefault();
-    const email = loginEmailEl.value.trim();
-    const password = loginPasswordEl.value.trim();
-  
-    if (email && password) {
-      const response = await fetch('/api/customers/login', {
-        method: 'POST',
-        body: JSON.stringify({
-          email,
-          password
-        }),
-        headers: { 'Content-Type': 'application/json' }
-      });
+// login pathway for existing users
+let loginOption = async event => {
+  event.preventDefault();
+  const email = loginEmailEl.value.trim();
+  const password = loginPasswordEl.value.trim();
 
-      response.ok ? document.location.replace('/about') : 
-      alert(response.statusText); }
-    }
+  if (email && password) {
+    const response = await fetch('/api/customers/login', {
+      method: 'POST',
+      body: JSON.stringify({
+        email,
+        password
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    });
+
+    response.ok ? document.location.replace('/about') : 
+    alert(response.statusText); }
+  }
 
 loginBtnEl.addEventListener('click', loginOption);
 

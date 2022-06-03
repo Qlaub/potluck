@@ -1,10 +1,11 @@
 const router = require('express').Router();
 const { Customer, Badge } = require('../../models');
+const { validateEmail } = require('../../utils/validate');
 
 // Supports show-all-customers option if we're still implementing it
 router.get('/', (req, res) => {
     Customer.findAll({
-        attributes: { exclude: ['password'] }
+        attributes: { exclude: ['password', 'validation_key', 'validated_email'] }
     })
     .then(dbCustomerData => res.json(dbCustomerData))
     .catch(err => {
@@ -13,13 +14,84 @@ router.get('/', (req, res) => {
     });
 });
 
+// get email validation key if email isn't validated
+router.post('/validate', (req, res) => {
+  Customer.findOne({
+    where: {
+      id: req.body.id
+    },
+    attributes: { exclude: ['password', 'total_donated', 'username'] }
+  })
+  .then(dbCustomerData => {
+    // checks if user has already validated their email
+    if (!dbCustomerData) {
+      res.status(404).json({ message: 'No user found with that ID' })
+    } else if (dbCustomerData.dataValues.validated_email === 0) {
+      res.json(dbCustomerData);
+    } else {
+      res.json({message: 'Already validated'});
+    }
+  })
+  .catch(err => {
+     console.log(err);
+     res.status(500).json(err);
+  });
+});
+
+// validates users email
+router.put('/validate', async (req, res) => {
+  const valid = await validateEmail(req.body.id, req.body.userInput);
+
+  if (valid) {
+    Customer.update(
+      {
+        validated_email: 1
+      },
+      {
+        where: { id: valid.id }
+      }
+    ).then(dbCustomerData => res.json({ href : 'validated' }))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+  }
+})
+
+// find user by verification code and return verification information
+router.post('/code', (req, res) => {
+  Customer.findOne({
+    where: {
+      validation_key: req.body.code
+    },
+    attributes: { exclude: ['password', 'total_donated', 'username'] }
+  })
+  .then(dbCustomerData => {
+    if (!dbCustomerData) {
+      res.status(404).json();
+    } // checks if user has already validated their email
+    else if (dbCustomerData.dataValues.validated_email === 0) {
+      res.json(dbCustomerData);
+    } else {
+      res.json({message: 'Already validated'});
+    }
+  })
+  .catch(err => {
+     console.log(err);
+     res.status(500).json(err);
+  });
+});
+
 // Supports User Sign-Up
 router.post('/', (req, res) => {
     Customer.create({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
-      total_donated: 0
+      total_donated: 0,
+      validated_email: 0,
+      // random 6-digit key generated
+      validation_key: Math.floor(100000 + Math.random() * 900000)
     })
     .then(dbCustomerData => {
       req.session.save(() => {

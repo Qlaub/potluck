@@ -2,16 +2,27 @@ require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 const router = require('express').Router();
 const { retrieveDishData, sanitizeValues, prepareData, retrieveRestaurantBalance } = require('../../utils/routeHelper');
-const { validateCheckout } = require('../../utils/validate');
+const { validateCheckout, checkValidationStatus } = require('../../utils/validate');
 const { checkForCoupon } = require('../../utils/discountHelper');
 
 // Donation route
 // Stripe expects req.body to include donation amount in pennies (lol) ex: { amount: 10000 } for $100 donation
 router.post('/donate', async (req, res) => {
-  // checks if user is logged in
+  // checks if user is logged in 
   if (!req.session.loggedIn) {
-    // res.render used instead of redirect because it allows passing a custom message
-    res.json({redirect: true});
+    res.json({redirect: 'login'});
+    return;
+  }
+
+  // checks for validated email
+  const validatedEmail = await checkValidationStatus(req.session.customer_id);
+  // checks if user is logged in and if user has validated email
+  if (validatedEmail === false) {
+    res.json({redirect: 'login'});
+    return;
+  } // returns validation url if user is valid and has not validated their email
+  else if (Number.isInteger(validatedEmail)) {
+    res.json({redirect: `verify/${validatedEmail}`});
     return;
   }
 
@@ -48,10 +59,21 @@ router.post('/donate', async (req, res) => {
 
 // Meal checkout route
 router.post('/:id', async (req, res) => {
-  // checks if user is logged in
+  // checks if user is logged in 
   if (!req.session.loggedIn) {
-    // res.render used instead of redirect because it allows passing a custom message
-    res.json({redirect: 'Please log in to order'});
+    res.json({redirect: 'login'});
+    return;
+  }
+
+  // checks for validated email
+  const validatedEmail = await checkValidationStatus(req.session.customer_id);
+  // checks if user has validated email
+  if (validatedEmail === false) {
+    res.json({redirect: 'login'});
+    return;
+  } // returns validation url if user is valid and has not validated their email
+  else if (Number.isInteger(validatedEmail)) {
+    res.json({redirect: `verify/${validatedEmail}`});
     return;
   }
 

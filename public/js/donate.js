@@ -3,8 +3,6 @@ const donationFormEl = document.querySelector('#donateForm');
 const restaurantSelectionEl = document.querySelector('#restaurant');
 const radioButtonEls = document.querySelectorAll('input[type="radio"]');
 
-console.log(radioButtonEls)
-
 // Amount argument expected as an integer in pennies
 async function donate(restaurantId, amount, restaurantName) {
   // post request to credit card checkout
@@ -16,7 +14,7 @@ async function donate(restaurantId, amount, restaurantName) {
     body: JSON.stringify({
       restaurantId: restaurantId,
       amount: amount,
-      name: restaurantName
+      name: restaurantName,
     })
   });
 
@@ -24,7 +22,7 @@ async function donate(restaurantId, amount, restaurantName) {
   response.ok ? data = await response.json() : alert(response.statusText);
 
   if (data.redirect) {
-    window.location.href = 'login';
+    window.location.href = `${data.redirect}`;
   } else {
     // Update page to credit card checkout url
     window.location = data.url;
@@ -41,15 +39,11 @@ function getUserValue() {
   radioButtonEls.forEach(button => {
     // validate custom donation
     if (button.dataset.amount === "custom" && button.checked) {
-      console.log(button)
       value = customDonation;
     } else if (button.checked) {
       value = button.dataset.amount;
-      console.log(button.value)
     }
   });
-
-  console.log(value)
 
   // validate
   if (!value || !Number.isInteger(parseInt(value))) {
@@ -70,7 +64,9 @@ donationFormEl.addEventListener('submit', async (event) => {
   // NEED INPUT VALIDATION
   let amount = getUserValue() * 100; // Stripe expects amount in pennies
 
-  if (amount) {
+  if (restaurantSelectionEl.value === 'Restaurant') {
+    return false;
+  } else if (amount) {
     donate(restaurantSelectionEl.value, amount, restaurantName);
   }
 });

@@ -1,33 +1,11 @@
-{{!-- <div class="relative mb-60">
-  <h2 class="text-2xl text-center text-teal-800 font-bold [Helvetica] my-5 py-5 mx-6">
-      Donate
-  </h2>
-  <p class="text-center text-teal-900 font-bold [Helvetica] mx-6">
-    Please select the restaurant you would like to donate to and then enter the amount of your donation
-    <br><br>
-
-    <form class="relative text-center content-center text-teal-900 font-bold [Helvetica] mx-6">
-      <label for="restaurant" class="text-center text-teal-900 font-bold [Helvetica]">Choose a restaurant:</label>
-        <select name="restaurant" id="restaurant" class="mx-auto content-center text-center text-teal-900 [Helvetica] block appearance-none bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-state">
-          {{#each restaurants as |restaurant|}}
-          <option value="{{restaurant.id}}" class="text-center text-teal-900 font-bold [Helvetica]">{{restaurant.name}}</option>
-          {{/each}}
-        </select>
-        <br>
-      <label for="amount">Amount to donate:</label>
-      <input type="text" id="donateInput">
-      <br><br>
-      <input type="click" value="Donate" id="donateBtn" class="button bg-teal-600 py-4 text-center inline-block px-6 py-2.5 text-white font-medium text-xs leading-tight uppercase
-    rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">
-  </p>
-</div> --}}
-
 <section class="grid grid-cols-1 lg:grid-cols-8 mb-4">
-  <h2 class="col-start-1 text-2xl text-teal-900 font-bold pb-1 lg:col-start-3 lg:col-end-5">Pay It Forward!</h2>
-  <p class="col-start-1 lg:col-start-3 lg:col-end-7 text-xl text-teal-900 pb-3">Your donation goes towards a free meal! After you donate to a restaurant, every person who orders food from that restaurant on our website receives up to $20 off their meal until your donation is met.</p>
   <div class="col-start-1 lg:col-start-3 lg:col-end-7 grid place-items-center mt-4 lg:mt-8">
-    <div class="bg-white rounded-lg">
-      <form id="donateForm" class="py-8 px-16 lg:px-24">
+    <div class="bg-white rounded-lg border-2 border-teal-400">
+      <div class="m-8 pb-6 lg:pb-8 max-w-xl border-b-2 border-gray-200">
+        <h2 class="text-2xl text-teal-900 font-bold pb-2">Pay It Forward!</h2>
+        <p class="text-lg text-teal-900">Your donation goes towards a free meal! After you donate to a restaurant, every person who orders food from that restaurant on our website receives up to $20 off their meal until your donation is met.</p>
+      </div>
+      <form id="donateForm" class="pb-8 pt-2 lg:pt-0 px-10 lg:px-16 lg:px-24">
         <fieldset>
           <legend class="text-xl lg:text-lg font-semibold text-teal-800 pb-4 lg:pb-2">Amount</legend>
 

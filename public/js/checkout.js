@@ -35,8 +35,15 @@ async function checkout(dishes) {
   let data;
   response.ok ? data = await response.json() : alert(response.statusText);
 
-  // Update page to credit card checkout url
-  window.location = data.url;
+  console.log(data)
+  console.log(window.location)
+
+  if (data.redirect) {
+    // window.location.pathname = `/${data.redirect}`;
+  } else if (data.url) {
+    // Update page to credit card checkout url
+    // window.location = data.url;
+  }
 
   return true;
 };
@@ -46,7 +53,3 @@ button.addEventListener('click', async () => {
   console.log(dishes)
   checkout(dishes);
 });
-
-// hardcoded values for testing purposes
-const testIds = [1, 2, 3];
-const testQuantities = [2, 2, 2];

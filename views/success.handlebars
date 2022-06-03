@@ -1,8 +1,12 @@
-<div class="relative">
-  <h2 class="text-2xl text-center text-teal-800 font-bold [Helvetica] my-5 py-5 mx-6">
-      Thank you for your ${{restaurant.amount}} {{checkout}} to {{restaurant.name}}.
-
-      {{#if discount}}You received a ${{discount}} discount!{{/if}}
-  </h2>
+<div class="relative grid place-items-center">
+  <div class="grid place-items-center bg-white rounded-xl md:p-4 border-2 border-teal-400">
+    <h2 class="max-w-xl text-4xl text-center text-teal-800 font-bold [Helvetica] my-5 py-5 md:pb-8 mx-6 border-b-2 border-teal-200">
+      Thanks for your {{checkout}} to {{restaurant.name}}! 
+    </h2>
+    <div class="px-8 pb-8 md:pt-2">
+      <p class="text-left text-lg pb-4">Your {{checkout}} is in progress. We sent an email to [[add customer email here]] with your receipt.</p>
+      <p class="text-left text-lg {{#if discount}}pb-4{{/if}}">If you have any questions or would like to change an order please contact us by phone or email.</p>
+      {{#if discount}}<p class="text-left text-lg">By the way, did you notice you received a ${{discount}}? That discount came directly from one of our users!</p>{{/if}}
+    </div>
+  </div>
 </div>
-<br><br><br><br>
