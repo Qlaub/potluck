@@ -4,8 +4,6 @@ const bcrypt = require('bcrypt');
 
 class Customer extends Model {
   async checkPassword(loginPassword) {
-    console.log(loginPassword)
-    console.log(this.password)
       return await bcrypt.compare(loginPassword, this.password);
   }
 }
