@@ -105,17 +105,17 @@ router.post('/', (req, res) => {
   });
 
   // Supports User Log-in
-  router.post('/login', (req, res) => {
+  router.post('/login', async (req, res) => {
     Customer.findOne({
       where: {
         email: req.body.email
       }
-    }).then(dbCustomerData => {
+    }).then(async dbCustomerData => {
       if (!dbCustomerData) {
         res.status(400).json({ message: 'No customer profile with that email address.  Try again.' });
         return;
       }
-      const validPassword = dbCustomerData.checkPassword(req.body.password);
+      const validPassword = await dbCustomerData.checkPassword(req.body.password);
   
       if (!validPassword) {
         res.status(400).json({ message: 'The password you have entered is incorrect.  Try again.' });
