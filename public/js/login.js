@@ -1,7 +1,7 @@
 // dom elements will go here
 const signUpUsernameEl = document.querySelector('#signUpUsername');
 const signUpEmailEl = document.querySelector('#signUpEmail');
-const signUpPasswordEl = document.querySelector('#signUpUsername');
+const signUpPasswordEl = document.querySelector('#password');
 const loginEmailEl = document.querySelector('#loginEmail');
 const loginPasswordEl = document.querySelector('#loginPassword');
 const signUpBtnEl = document.querySelector('#signUpBtn');
